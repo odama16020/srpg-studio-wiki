@@ -1,8 +1,10 @@
-# ES5 Compatibility (Critical)
+# Compatibility with SRPG Studio's JavaScript Environment (Critical)
 
 **Key references:** Analysis of the base overridable scripts (including singleton-calculator.js, map-enemyturnai.js, item-base.js and related files) and official plugins (calc-*.js, custom-*.js, ai-*.js etc.), cross-checked against the API reference documentation. Confirmed via searches: the core scripts and official plugins use only var, classic for loops, function declarations, and IIFEs — no let, const, arrows, or many modern array methods.
 
-SRPG Studio plugins execute in a **very old JavaScript environment** (ES5-era or earlier, similar to legacy browser/embedded JS engines of the time the engine was built). Modern ECMAScript features are **not supported** or unreliable. Using them will cause runtime errors or silent failures that are hard to debug in-game.
+SRPG Studio plugins execute in a **very old JavaScript environment** (closer to ES3 / JScript-like in practice, with some ES5-era support). Evidence includes a polyfill for Array.prototype.indexOf in base-top.js. Many modern or even basic ES5 array methods appear unavailable or unused in the core and official code. 
+
+**Safe rule:** Use only `var`, classic `for` loops, `function`, `indexOf`, string concatenation, and IIFEs. Avoid anything newer. Using unsupported features will cause runtime errors or silent failures that are hard to debug in-game.
 
 **Always read this page first.** Every other wiki page repeats key rules with examples.
 
@@ -26,6 +28,8 @@ SRPG Studio plugins execute in a **very old JavaScript environment** (ES5-era or
 **Evidence from sources:** 
 - The base scripts and official plugins contain only `var`, classic `for` loops, `function` declarations/expressions, `indexOf` usage where needed, and IIFEs.
 - Searches for `\blet\b`, `\bconst\b` (as declarations), `=>`, `\.includes\(`, `\.find\(`, arrow in function position, and template backticks returned zero relevant hits in core + official.
+
+**Note on environment level:** The base script `base-top.js` includes a polyfill for `Array.prototype.indexOf`. This indicates the runtime is closer to ES3 / older JScript-like environments than full ES5 in some areas. While many ES5 features (like the array methods .forEach/.map/.filter) appear unavailable or unused, the conservative guidance in this wiki (stick to var, classic loops, indexOf, etc.) remains the safest approach for maximum compatibility. Rephrasing the environment as "ES3-equivalent / JScript-like with limited ES5 support" is more precise.
 
 ## Required Patterns (Copy These)
 
@@ -106,7 +110,7 @@ if (typeof unit.custom.myValue === 'undefined') {
 value = unit.custom.myValue;
 ```
 
-Never assume existence. Same for `class.custom`, `weapon.custom`, `item.custom`, `skill.custom`, `env` values, etc. (Sources: plugin_official/calc-goodweapon.js, many custom-*.js, Script/singleton/*).
+Never assume existence. Same for `class.custom`, `weapon.custom`, `item.custom`, `skill.custom`, `env` values, etc. (Sources: official plugins (folder name varies by project)/calc-goodweapon.js, many custom-*.js, Script/singleton/*).
 
 ### 5. String Building (No Templates)
 
@@ -190,4 +194,4 @@ Violating these is the #1 cause of "works in my LLM-generated code but crashes i
 - [getting-started.md](getting-started.md)
 - Key files to consult: base/base-top.js (defineObject/createObject), official plugins such as custom-item.js and calc-goodweapon.js, and representative base singleton and map files for style reference.
 
-When maintaining this wiki, re-verify the "no modern syntax" claim by searching the current Script/ + plugin_official/ before claiming support for anything new.
+When maintaining this wiki, re-verify the "no modern syntax" claim by searching the current Script/ + official plugins (folder name varies by project)/ before claiming support for anything new.

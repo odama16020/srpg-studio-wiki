@@ -132,6 +132,6 @@ Always null-check lists and handles.
 - [utilities-and-structs.md](utilities-and-structs.md)
 - The base singleton-system.js (PosChecker, IndexArray, LayoutControl, Miscellaneous, Probability — thin wrappers / re-exports of a lot of root/session power)
 - singleton-currentmap.js (CurrentMap, MapView) in the base scripts
-- Countless uses in every plugin_official/ file.
+- Countless uses in every official plugins (folder name varies by project)/ file.
 
 This surface is intentionally broad; most plugins only need a handful of accessors + generators + simulator. Read the HTML docs + grep the Script/ for real call sites when implementing.

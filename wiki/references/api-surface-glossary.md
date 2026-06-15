@@ -76,6 +76,6 @@ SceneType, UnitType/Group, ItemType, SkillType, WeaponOption, ParamType, Directi
 1. Find the concept here or in a topical wiki page.
 2. Read the corresponding api_references/ HTML section for exact method signatures and "値" enum refs.
 3. Grep the Script/ source for the object/method name to see real implementation and call sites.
-4. Look in plugin_official/ for approved alias/registration patterns around that object.
+4. Look in official plugins (folder name varies by project)/ for approved alias/registration patterns around that object.
 
-This glossary is intentionally brief — the HTML files + Script/*.js are the ground truth. Update this page when new high-usage surface is discovered in future Script/plugin_official versions.
+This glossary is intentionally brief — the HTML files + Script/*.js are the ground truth. Update this page when new high-usage surface is discovered in future Script/official plugins (folder name varies by project) versions.

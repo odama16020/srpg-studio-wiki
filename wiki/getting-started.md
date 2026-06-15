@@ -26,7 +26,7 @@ In a standard SRPG Studio project you will commonly encounter:
 - A Script (or equivalent base scripts) folder — This contains the overridable foundation: calculators, AI base classes, item package definitions, command managers, flow logic, etc. These are the files you read to discover what to override or extend. Do not edit them directly, as they can be reset on engine or project updates.
 - Official example plugins (often provided when the official samples are included with the project or engine) — These demonstrate supported patterns and are excellent references for "how the engine developers intend extensions to be written."
 - The engine's API reference documentation (HTML files) — These document the objects and methods available on `root`, sessions, assets (Unit, Item, etc.), generators, and so on.
-- User-Made / community plugins (often in a `Plugin/` folder or equivalent, or provided as zips on GitHub/Drive/itch) — These are unofficial extensions. They are excellent for inspiration and discovering real-world use cases. The wiki now includes a curated list of popular ones (with links to the Fandom User-Made Plugin Links page and notable repos like Goinza's) plus high-level summaries. See references/user-made-plugins.md. Do not copy code directly; always re-implement based on official patterns + the wiki. Some popular Japanese ones are only available as zips (e.g. certain namaemitei contributions) and are best discovered via the fandom hub or community Discord rather than direct source browsing.
+- User-Made / community plugins (often in a `Plugin/` folder or equivalent, or provided as zips on GitHub/Drive/itch) — These are unofficial extensions. They are excellent for inspiration and discovering real-world use cases. The wiki includes a curated high-level list with links to the Fandom User-Made Plugin Links page and some notable public repos. See references/user-made-plugins.md. Do not copy code directly; always re-implement based on official patterns + the wiki. Many Japanese contributions are zip-only and best discovered via the Fandom hub or community channels.
 - Data and resource folders (Graphics, Audio, Material, Save, etc.).
 
 When developing plugins, you add or edit .js files in the location your project uses for plugins (commonly a Plugin or similar folder) so that they are picked up when building or running the game.
@@ -96,7 +96,7 @@ Copy the header style + IIFE + alias discipline exactly from an official plugin 
 8. enumerated-types.md (the numbers you pass around)
 9. ui-rendering-windows.md (if doing visuals)
 10. references/official-plugin-patterns.md (map your goal to existing official categories)
-11. The actual source files in Script/ and srpgs_official_plugin/ for the objects you plan to touch.
+11. The actual source files in Script/ and official plugins (folder name varies by project)/ for the objects you plan to touch.
 
 ## Common First Plugins
 

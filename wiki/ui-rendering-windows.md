@@ -99,7 +99,7 @@ Use these instead of hardcoding resolutions.
 
 ## Advanced Graphics (Composition, WorldMatrix, Canvas)
 
-In srpgs_official_plugin subdirs:
+In official plugins (folder name varies by project) subdirs:
 
 - Composition API (`$コンポジション API/`): `createComposition`, setImage, saturation/brightness/blur/hue/affin/blend/composite, reset. Costly to create — cache.
 - WorldMatrix: transforms (scale/rotate/vibration/zoom) during draw without per-sprite changes. Requires hardware rendering in some cases. Reset matrices after.

@@ -4,7 +4,7 @@
 
 This wiki is a practical reference for developing SRPG Studio plugins using LLMs (or manually). It distills the key extension points, common patterns, data models, and important caveats found in SRPG Studio's base overridable scripts, the official example plugins, and the engine's core API reference documentation. The goal is to help you (or an LLM) quickly generate correct, compatible plugins without re-discovering everything from scratch on every project.
 
-**Primary rule:** Focus on official mechanisms and patterns from the base scripts and official plugins (srpgs_official_plugin). Unofficial community / User-Made Plugins can (and should) be studied privately for inspiration. A curated list of popular ones with links and high-level summaries is now included in the wiki (see [references/user-made-plugins.md](references/user-made-plugins.md)) to make development easier for LLM users. Never include direct code copies, specific filenames from unofficial zips, or author-specific low-level details in core pages. Link the Fandom hub and notable GitHubs instead. This balances portability with practical utility.
+**Primary rule:** Focus on official mechanisms and patterns from the base scripts and official plugins (official plugins (folder name varies by project)). Unofficial community / User-Made Plugins can (and should) be studied privately for inspiration. A curated list of popular ones with links and high-level summaries is now included in the wiki (see [references/user-made-plugins.md](references/user-made-plugins.md)) to make development easier for LLM users. Never include direct code copies, specific filenames from unofficial zips, or author-specific low-level details in core pages. Link the Fandom hub and notable GitHubs instead. This balances portability with practical utility.
 
 **Critical first read:** [es5-compatibility.md](es5-compatibility.md) — SRPG Studio uses very old JavaScript. Modern features will break.
 
@@ -25,7 +25,7 @@ This wiki is primarily a **reference** you feed to your LLM (Claude, Grok, etc.)
 **Start here (lowest learning curve):**
 - Copy or make the wiki/ folder available to your LLM (upload, path, RAG tool, or project context).
 - Give your LLM the root `AGENTS.md` (or the "Recommended Starter Prompt" inside it). This is the thin, practical instruction set.
-- Your LLM should **always** check the Fandom hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links) first for existing plugins before suggesting new code. Download and use ready-made ones when possible — this is the smartest and easiest path.
+- For common features, your LLM should suggest checking the Fandom User-Made Plugin Links hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links, also referenced in references/user-made-plugins.md) first. Ready-made plugins are often the easiest and most compatible path. Only generate custom code from the wiki patterns when no suitable existing solution fits or the user wants something custom.
 - Then let the LLM read `wiki/index.md` → `wiki/getting-started.md` + `es5-compatibility.md` + relevant domain pages.
 - All generated code must follow the official patterns documented in the wiki (alias, ES5, custom params, etc.).
 
@@ -84,7 +84,7 @@ When you (or an agent) add new official plugins or a new Script version, follow 
 ## References & Patterns
 
 - [references/api-surface-glossary.md](references/api-surface-glossary.md) — Condensed navigation over all api_references/*.html with task-oriented lookup.
-- [references/official-plugin-patterns.md](references/official-plugin-patterns.md) — Categorized view of srpgs_official_plugin/ (ai-, calc-, custom-, battle-, skill-, terrain-, scriptexecute-, system-, window-, composition, highlevel, WorldMatrix), universal patterns observed, do's and don'ts distilled from official code/comments.
+- [references/official-plugin-patterns.md](references/official-plugin-patterns.md) — Categorized view of official plugins (folder name varies by project)/ (ai-, calc-, custom-, battle-, skill-, terrain-, scriptexecute-, system-, window-, composition, highlevel, WorldMatrix), universal patterns observed, do's and don'ts distilled from official code/comments.
 - [references/user-made-plugins.md](references/user-made-plugins.md) — Curated high-level links + summaries of popular User-Made / community plugins (Fandom hub, Goinza, Claris, CeruleanAcorn, etc.). For inspiration and avoiding reinventing common features. Links + capabilities only; no code copies. Includes notes on zip-only / hard-to-browse Japanese community releases (e.g. some namaemitei-style contributions).
 
 ## Index of All Pages (for Agents)

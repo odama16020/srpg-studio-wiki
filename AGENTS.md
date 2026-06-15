@@ -6,23 +6,23 @@ This wiki (srpg-studio-wiki/wiki/) is a **portable reference** for correct, comp
 
 The wiki focuses on **official patterns** from the base scripts, official example plugins (srpgs_official_plugin), and API docs. It includes a curated high-level list of community plugins (see references/user-made-plugins.md) so LLMs don't have to rediscover everything.
 
-## Absolute Priority Rule (Never Skip)
-**For EVERY feature request the user makes:**
+## Guidance for Feature Requests
 
-1. **Fandom First — Do not reinvent the wheel.**
-   - Your very first response must include: "Before we write any new code, the best and easiest thing is usually to use an existing community plugin if one already does what you want."
-   - Direct the user to the primary hub: https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links
-   - Help them search or describe relevant sections (e.g., "Look for creators like Goinza, Claris, o-to, 名前未定（仮）, or keywords like 'splash', 'range display', 'custom item', 'gauge', 'AI'").
-   - If a suitable plugin exists: Recommend downloading it, reading its README/usage, testing it in isolation, and giving credit to the author. This is the lowest-effort, lowest-risk path for the user.
-   - Only proceed to generating new code if the user explicitly says "no good match exists", "I need a modified/custom version", or "I want to understand how to implement it myself using official methods".
+For common or popular features (UI tweaks, range/AI displays, new skill/item behaviors, gauges, custom windows, etc.):
 
-2. When implementing (only after Fandom check):
-   - Ground **everything** in this wiki + the official base scripts / srpgs_official_plugin / API reference HTMLs.
-   - Always follow ES5 rules (see wiki/es5-compatibility.md), alias the original method, use createObject / create*Object, guard .custom with typeof, respect skip modes.
-   - Prefer data-driven (custom parameters + keywords) over hard-coded.
-   - Cite specific wiki pages and source files in your explanations.
-   - Provide complete, ready-to-use plugin code in the official header + IIFE style.
-   - Remind the user to test thoroughly (test play, combine with other plugins, skip modes, save/load, etc.).
+- Suggest that the user first checks the Fandom User-Made Plugin Links hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links, also summarized at wiki/references/user-made-plugins.md).
+- Help the user search the hub for existing ready-made solutions. Recommend downloading, testing, and crediting an existing plugin when it fits (lowest effort and risk).
+- Only generate new custom code from the patterns in this wiki if the user confirms no good existing match or explicitly wants a custom implementation.
+
+When you do implement custom code:
+- Ground **everything** in this wiki + the official base scripts + official plugins + API reference HTMLs.
+- Always follow the environment compatibility rules (see wiki/es5-compatibility.md), alias the original method, use createObject / create*Object factories, guard .custom with typeof, respect skip modes.
+- Prefer data-driven approaches (custom parameters + keywords) over hard-coded values.
+- Cite specific wiki pages and source files (base scripts or official plugin examples) in your explanations.
+- Provide complete, ready-to-use plugin code in the standard official-style header + IIFE.
+- Remind the user to test thoroughly (test play, combinations with other plugins, skip modes, save/load, etc.).
+
+Respond in the language of the user's query.
 
 3. Sustained / multi-session development:
    - The user will provide the wiki files (via upload, folder path in their LLM tool, RAG, or project context) in each relevant chat.
@@ -36,11 +36,12 @@ You are an expert helper for SRPG Studio plugin development.
 
 I have the srpg-studio-wiki (this wiki/) available to you. Use it as the main reference for patterns.
 
-**Hard rules for every task:**
-- Fandom first: For any requested feature or behavior, immediately tell me to check https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links . Help me find if a ready-made plugin already exists. Recommend downloading and using an existing one (with credit) whenever possible. Only write new code if I confirm no suitable existing plugin.
-- Use this wiki + official mechanisms only (base Script, srpgs_official_plugin, API docs). Never invent patterns.
-- All code must be valid ES5 (var, classic for, IIFE, alias the original, etc.). See wiki/es5-compatibility.md.
+**Guidance for every task:**
+- For common features, first suggest checking the Fandom User-Made Plugin Links hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links) and wiki/references/user-made-plugins.md for existing ready-made solutions. Recommend using one (with credit) when it fits. Only write new custom code from wiki patterns if I confirm no good match or I want something custom.
+- Use this wiki + official mechanisms only (base scripts, official plugins, API docs). Never invent patterns.
+- All code must follow the SRPG Studio JS environment rules (var, classic for, IIFE, alias the original, etc.). See wiki/es5-compatibility.md.
 - Always alias when overriding. Use createObject where appropriate. Guard custom parameters.
+- Respond in the same language as my query.
 - Be patient and explain simply. Give complete plugin files with the standard header (description, 使用方法, author, 更新履歴).
 - After giving code, give clear installation + testing steps.
 - If something is already covered well in the wiki or Fandom, link or quote it instead of repeating.
@@ -60,7 +61,7 @@ Start by reading wiki/index.md and wiki/getting-started.md to understand the str
 ## Key Files to Prioritize
 - wiki/index.md (catalog)
 - wiki/getting-started.md + es5-compatibility.md + overriding-patterns.md (foundations)
-- references/user-made-plugins.md (community solutions — link these heavily)
+- references/user-made-plugins.md (community solutions — link the Fandom hub when relevant for common features)
 - Domain pages as needed (calculators, items, AI, battle, events, UI, etc.)
 - references/official-plugin-patterns.md (map your goal to official examples)
 
@@ -74,7 +75,7 @@ This AGENTS.md + the wiki makes plugin development accessible with low learning 
 
 See also:
 - wiki/LLM-INSTRUCTIONS.md (full details; focus on the "Query / Answer Workflow" and Fandom rule for plugin dev sessions)
-- wiki/user-made-plugins.md (always prefer linking existing)
+- references/user-made-plugins.md (always prefer linking existing)
 - The Fandom hub (primary discovery for ready-made solutions)
 
 If the user is also maintaining their own copy of this wiki, refer to the maintenance parts of LLM-INSTRUCTIONS.md.

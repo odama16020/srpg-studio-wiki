@@ -27,7 +27,7 @@ Append-only chronological record. Newest entries at the top. Format: `## [YYYY-M
 
 - Changed long-standing strict "no mention of any unofficial plugins" policy (in LLM-INSTRUCTIONS.md, index.md, getting-started.md, etc.).
 - Rationale: providing high-level links and summaries of popular, well-maintained community plugins (from Fandom User-Made Plugin Links hub + notable public GitHub repos) makes the wiki far more useful as a practical development resource for LLMs and humans. LLMs can now recommend battle-tested extensions, avoid reinventing wheels, and build upon patterns from real projects.
-- New rule: Curated links + capability summaries + caveats (compatibility, commercial use, known clashes) are allowed and encouraged in a dedicated page. Never copy code, never deep-dive internals of unofficial zips, never hardcode specific user filenames in core pattern pages. Always ground new work in official Script + srpgs_official_plugin + API.
+- New rule: Curated links + capability summaries + caveats (compatibility, commercial use, known clashes) are allowed and encouraged in a dedicated page. Never copy code, never deep-dive internals of unofficial zips, never hardcode specific user filenames in core pattern pages. Always ground new work in official Script + official plugins (folder name varies by project) + API.
 - Added/updated wiki/community-plugins.md (or equivalent) with:
   - Link to primary hub: https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links (organized by creator, with download links and descriptions).
   - Highlighted public GitHubs (e.g. Goinza/Plugins-for-SRPG-Studio with its nice vercel site https://goinzaplugins.vercel.app/ covering Combat Art, Cover System, Custom menus, Damage formulas, etc.).
@@ -41,11 +41,25 @@ Append-only chronological record. Newest entries at the top. Format: `## [YYYY-M
 
 ## [2026-06-15] correction | Made wiki portable for other users
 
-- Softened all language that tied the wiki strictly to the directory layout of the originating project (`Script/`, `srpgs_official_plugin/`, `api_references/` as "the only sources", specific "this project's" counts and paths in meta sections).
+- Softened all language that tied the wiki strictly to the directory layout of the originating project (`Script/`, `official plugins (folder name varies by project)/`, `api_references/` as "the only sources", specific "this project's" counts and paths in meta sections).
 - Reframed sourcing notes, "Sources:" headers, LLM-INSTRUCTIONS.md, index.md, log.md, getting-started.md, and README to describe the content as informed by "the base overridable scripts", "official example plugins", and "the engine's API reference documentation".
 - Specific file names (e.g. calc-goodweapon.js, singleton-calculator.js) are retained where they provide practical guidance, as these are the actual names users will encounter.
 - Goal: other users can feed the wiki/ to their LLM even if their project folder structure or selection of official plugins differs.
 - No change to the actual technical content or examples.
+
+## [2026-06-15] correction | Addressed review feedback (primarily B, C, D, F + caution on A + hygiene)
+
+- references/user-made-plugins.md: Heavily compressed per review concerns about external unverifiable content and contradiction with "official sources" principle. Now leads with Fandom hub link + strong disclaimers ("unverified by this wiki, check directly, links/terms/features can change"). Removed long detailed capability lists and low-level internals (e.g. specific affected classes in one community system). Kept only high-level pointers + links + general cautions. (A was noted as partially questionable since externals weren't re-verified in the review; handled conservatively.)
+- Softened mandatory "Fandom first for *every* request / must say boilerplate first" rules across AGENTS.md, LLM-INSTRUCTIONS.md (including the example starter prompt), index.md, getting-started.md, user-made-plugins.md, and README.md. Now: "For common features, suggest checking the Fandom hub first; only generate custom when no match or user wants custom." (B)
+- Fixed self-lint / hygiene issues (C):
+  - AGENTS.md:77 broken link corrected to references/user-made-plugins.md.
+  - Removed duplicate/empty "## Maintenance Workflow (Ingest New Material) — Curator Only" stub heading in LLM-INSTRUCTIONS.md.
+  - Removed consecutive duplicate "## Compatibility & Best Practices..." heading in user-made-plugins.md.
+- Updated es5-compatibility.md for precision on environment (D): Retitled section, noted base-top.js indexOf polyfill evidence for "ES3-equivalent / JScript-like" reality (while keeping conservative safe subset guidance). 
+- Added explicit response language rule: LLM should reply in the language of the user's query (wiki files stay English; this supports Japanese-speaking users without forcing English responses). (F)
+- Generalized lingering "srpgs_official_plugin" references to "official plugins (folder name varies by project)" for better portability across user setups.
+- All technical claims remain grounded in real base Script/ + plugin_official/ + api_references/ (as verified in the review).
+- Committed + pushed.
 
 - Created full initial wiki under `srpg-studio-wiki/wiki/` (18+ .md files) for LLM-assisted SRPG Studio plugin development.
 - The wiki is intended to be portable for other users who may have different project folder layouts or not all official plugins installed.

@@ -3,7 +3,7 @@
 **Two main use cases (read the right part for your session):**
 
 - **Most common: Helping a user develop plugins** (everyday SRPG Studio developers using their LLM + this wiki). See the "Usage for Plugin Development" section below first. The focus is low-friction, Fandom priority, official patterns only, and helping users with limited programming/LLM experience.
-- **Less common: Maintaining / curating the reference wiki itself** (when new official Script or srpgs_official_plugin material arrives). See the "Maintenance Workflow" section.
+- **Less common: Maintaining / curating the reference wiki itself** (when new official Script or official plugins (folder name varies by project) material arrives). See the "Maintenance Workflow" section.
 
 This file (plus the root AGENTS.md) is the schema that tells LLMs how to behave with the wiki.
 
@@ -22,7 +22,7 @@ Before reading wiki pages or writing *any* code for a requested feature:
 - If a good match: Recommend downloading the plugin, reading its usage (usually in the zip or description), testing it alone first, and crediting the author. This is the recommended path.
 - Only after the user says "no suitable one" or "I need something custom / to learn the official way", proceed to use the wiki.
 
-This rule is repeated in AGENTS.md, index.md, getting-started.md, and the top of user-made-plugins.md. Enforce it every time.
+The preference for checking existing community solutions first (via Fandom hub) is noted in AGENTS.md, index.md, getting-started.md, and user-made-plugins.md. Mention the hub when relevant for common features.
 
 ### Practical Steps in a Session
 1. User makes the wiki files available (folder path, uploads key pages, RAG, or project context) and ideally gives you the root AGENTS.md or the starter prompt from it.
@@ -41,11 +41,12 @@ This rule is repeated in AGENTS.md, index.md, getting-started.md, and the top of
 You are helping me develop plugins for SRPG Studio. The srpg-studio-wiki folder is available to you.
 
 Hard rules (follow every time):
-- Fandom first: For any feature I ask about, immediately tell me to check https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links . Help me search it for existing plugins. Strongly recommend downloading and using a ready-made one (with credit) if it fits. Only write new code if I say there is no good match or I want a custom version.
-- Ground all suggestions in this wiki + official base scripts / srpgs_official_plugin / API docs. Never make up patterns.
-- Code must be valid ES5 only (var, classic for loops, IIFE, always alias the original method, use createObject*, guard .custom with typeof). See wiki/es5-compatibility.md.
+- For common features, first suggest checking the Fandom User-Made Plugin Links hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links) and the references/user-made-plugins.md page for existing ready-made solutions. Recommend using one (with credit) if it fits well. Only write new custom code from the core wiki patterns if the user confirms no good match or explicitly wants custom.
+- Ground all suggestions in this wiki + official base scripts + official plugins + API docs. Never make up patterns.
+- Code must be valid for the SRPG Studio JS environment only (var, classic for loops, IIFE, always alias the original method with .call(this, ...), use createObject* factories, guard .custom with typeof). See wiki/es5-compatibility.md.
+- Respond in the same language as the user's query (Japanese queries get Japanese explanations and comments in code where appropriate). The wiki files the LLM reads are in English.
 - Be patient and use simple language. Give full plugin files with the standard header (description, 使用方法, author, 更新履歴).
-- After code, give exact steps for the editor and testing (test play, skip modes, combinations).
+- After code, give exact steps for the editor and testing (test play, skip modes, combinations with other plugins).
 - For ongoing work, remember the wiki patterns across messages (user will re-provide files as needed).
 
 First, confirm you read wiki/index.md and wiki/AGENTS.md (or the rules above). Then wait for my first request.
@@ -66,7 +67,7 @@ Always reinforce: "Using a good existing Fandom plugin is usually better than a 
 1. **Sourcing focus**:
    - Prioritize the base overridable script files (the Script folder and its subfolders in a typical SRPG Studio project), the official example plugins, and the engine's API reference documentation (the HTML files).
    - You may also consult the general llm-wiki.md pattern file (at the project root) and this wiki itself for tone, structure, and maintenance conventions.
-   - Unofficial/community plugins (User Made Plugins) can be read privately for implementation ideas and to discover additional patterns. A curated, high-level list of popular/recommended ones (with links to download pages, GitHub, or the Fandom User-Made Plugin Links hub, plus short capability summaries and compatibility notes) is now permitted in the wiki (see references/user-made-plugins.md). This makes the wiki more practical for LLM-assisted development of new plugins, without violating portability. Never copy-paste code or low-level internals from unofficial plugins into wiki pages; only high-level "this enables X, see link". Always prefer grounding in official Script + srpgs_official_plugin + API.
+   - Unofficial/community plugins (User Made Plugins) can be read privately for implementation ideas and to discover additional patterns. A curated, high-level list of popular/recommended ones (with links to download pages, GitHub, or the Fandom User-Made Plugin Links hub, plus short capability summaries and compatibility notes) is now permitted in the wiki (see references/user-made-plugins.md). This makes the wiki more practical for LLM-assisted development of new plugins, without violating portability. Never copy-paste code or low-level internals from unofficial plugins into wiki pages; only high-level "this enables X, see link". Always prefer grounding in official Script + official plugins (folder name varies by project) + API.
    - Every factual claim, method name, code example, or pattern should be grounded in the official base scripts, official plugins, or API docs. Use "Key references:" or "Sources:" style notes on pages.
 
 2. **ES5 compatibility is sacred**:
@@ -120,7 +121,7 @@ Minimal structure:
 ```markdown
 # Page Title
 
-**Sources:** Script/xxx.js, Script/yyy.js, srpgs_official_plugin/foo.js, api_references/bar.html, ...
+**Sources:** Script/xxx.js, Script/yyy.js, official plugins (folder name varies by project)/foo.js, api_references/bar.html, ...
 
 Intro paragraph.
 
@@ -141,17 +142,13 @@ For reference/glossary pages, be explicit that the HTML + Script sources are the
 
 1. Read `wiki/index.md` to find relevant pages.
 2. Read the 1-3 most relevant pages fully.
-3. If needed, read the cited source files in Script/srpgs_official_plugin/api_references for precise signatures (use read_file with limits or grep).
-4. Check references/user-made-plugins.md (or the Fandom hub it points to) for whether a popular community solution already exists for the feature (link it in the answer for the user). For end-user sessions, treat this Fandom check as the absolute first step (see usage section).
+3. If needed, read the cited source files in Script/official plugins (folder name varies by project)/api_references for precise signatures (use read_file with limits or grep).
+4. When the request sounds like a common need (range display, new skill types, UI tweaks, gauges, AI improvements, etc.), check references/user-made-plugins.md (or the Fandom User-Made Plugin Links hub it points to) and suggest relevant existing solutions if they fit. Link the hub for the user. Only proceed to custom implementation from core wiki patterns if no good match or the user specifically wants something new/custom.
 5. Synthesize an answer that cites the wiki pages + specific source files/lines where possible.
 6. If the answer requires a new code pattern not yet in the wiki (and you are in a curator session), also propose (and later perform) the wiki update as part of the same task.
 7. Always remind about ES5 rules and the alias discipline.
 
 In curator/maintenance sessions, good answers can compound the wiki by filing synthesized knowledge back as small updates + log entries.
-
-## Maintenance Workflow (Ingest New Material) — Curator Only
-
-When updates to the base scripts or new official plugins become available (new engine version, additional official plugins released, etc.):
 
 ## Log.md Discipline
 
