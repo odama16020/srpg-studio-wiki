@@ -2,9 +2,9 @@
 
 **LLM Wiki for writing correct, compatible plugins for SRPG Studio (English).**
 
-This wiki sits between you (or an LLM agent) and the raw sources (`Script/`, `plugin_official/`, `api_references/`). It extracts the key extension points, patterns, data models, and gotchas so that future plugin development compounds instead of starting from zero every time.
+This wiki is a practical reference for developing SRPG Studio plugins using LLMs (or manually). It distills the key extension points, common patterns, data models, and important caveats found in SRPG Studio's base overridable scripts, the official example plugins, and the engine's core API reference documentation. The goal is to help you (or an LLM) quickly generate correct, compatible plugins without re-discovering everything from scratch on every project.
 
-**Primary rule:** All content is derived strictly from `Script/`, `plugin_official/`, and `api_references/`. Unofficial plugins may be studied for ideas but are never named or directly referenced here.
+**Primary rule:** Focus on official mechanisms and patterns from the base scripts and official plugins. Unofficial community plugins can be studied privately for inspiration during development, but specific unofficial plugin names, authors, or direct code copies should not be included in the wiki itself. This keeps the wiki portable across different users' project setups.
 
 **Critical first read:** [es5-compatibility.md](es5-compatibility.md) — SRPG Studio uses very old JavaScript. Modern features will break.
 
@@ -109,14 +109,9 @@ Use this list + `grep` / file reads in the wiki dir when navigating.
 
 ## How the Wiki Was Built (Initial)
 
-Created 2026-06-15 by systematic exploration (list_dir + heavy grep + targeted full/partial reads of key files) of:
-- Script/ structure + all major singletons, command/AI/battle/item/flow files
-- All ~200 files in plugin_official/ (categorized + representative full reads for patterns)
-- All api_references/*.html (extracted Root, sessions, assets, generators, managers, volatile structs, events)
+This wiki was initially assembled through study of SRPG Studio's base overridable scripts (Script folder and key files within it), the official example plugins, and the engine's API reference documentation. Emphasis was placed on identifying reusable extension points (alias targets, registration/configure hooks, Base classes for inheritance, custom parameter and keyword mechanisms, important data structs), the required ES5 coding discipline, and patterns shown in official plugins.
 
-Focus was on extension points (alias targets, configure*/push* hooks, Base* to subclass, custom/keyword dispatch, data structs) + ES5 style + official patterns.
-
-See log.md for the creation entry and future changes.
+See log.md for the creation entry and future changes. The wiki is written to be useful even for users whose project layout or selection of official plugins differs from the one used during its initial creation.
 
 ## Contributing / Future Expansion
 

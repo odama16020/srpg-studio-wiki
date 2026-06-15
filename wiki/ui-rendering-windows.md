@@ -1,6 +1,6 @@
 # UI, Rendering, Windows, and Custom Graphics
 
-**Sources:** `Script/base/base-objects.js` (BaseWindow, BaseWindowManager, BaseScrollbar, BaseNoticeView), `Script/singleton/singleton-rendercontrol.js` (all *Renderer: Text, Unit, Item, Skill, Window, Graphics, Number, Status, Chapter, Content, Title, WeaponType, Invocation, etc. + ColorValue, TextFormat, CacheControl), `Script/singleton/singleton-customcharchip.js` (CustomCharChip*, BaseCustomCharChip, _configure), `Script/window/*.js` and `windowmanager-*.js`, `Script/screen/*.js` (many _configure* for extra screens, config items, bottom windows, sentences), `Script/utility/utility-messageview.js` (BaseMessageView, FaceView, MessageViewControl), `Script/utility/utility-scrolltextview.js`, `Script/singleton/singleton-system.js` (LayoutControl), `api_references/manager.html` (GraphicsManager), `api_references/resource.html`, and overrides in `plugin_official/renderer-*.js`, `window-*.js`, `config-*.js`, `face-*.js`, `custom-weapongraphics.js`, `extra-*.js`, `highlevel-*.js`, composition/ and WorldMatrix/ subdirs.
+**Key references:** Base files including base-objects.js, singleton-rendercontrol.js, singleton-customcharchip.js, window/ and screen/ files, and utility-messageview.js. The API reference (manager.html, resource.html) and official plugins (renderer-*, window-*, etc.) illustrate extensions.
 
 ## Windows & Scrollbars
 
@@ -123,11 +123,11 @@ Warnings from sources: performance (createComposition), hardware draw mode requi
 
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md) (BaseWindow contract)
 - [root-sessions-api.md](root-sessions-api.md) (GraphicsManager, MediaManager details)
-- `Script/singleton/singleton-rendercontrol.js` (the renderers — skim for available draw helpers)
-- `Script/singleton/singleton-customcharchip.js`
-- `Script/base/base-objects.js` (BaseWindow / BaseScrollbar)
-- `plugin_official/renderer-*.js`, `window-*.js`, `config-*.js`, `face-*.js`, `extra-*.js`
-- Composition / WorldMatrix / highlevel example files in plugin_official/ (for advanced graphics)
-- `api_references/manager.html`, `resource.html`, `subasset.html` (InteropTextUI, Layouts, Dictionaries)
+- The base singleton-rendercontrol.js (the renderers — skim for available draw helpers)
+- singleton-customcharchip.js in the base scripts
+- base-objects.js (BaseWindow / BaseScrollbar)
+- Official plugins such as renderer-*.js, window-*.js, config-*.js, face-*.js, extra-*.js
+- Composition / WorldMatrix / highlevel example files among the official plugins (for advanced graphics)
+- The API reference manager.html, resource.html, subasset.html (InteropTextUI, Layouts, Dictionaries)
 
 UI extensions range from simple alias color/pos tweaks to full custom scenes and post-process effects. Start with windows + renderers + custom char chip for most needs.

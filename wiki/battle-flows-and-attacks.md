@@ -1,6 +1,6 @@
 # Battle Flows and Attacks
 
-**Sources:** `Script/attack/attack_pre.js` (PreAttack, CoreAttack, many FlowEntries), `Script/attack/attack_flow.js` (AttackFlow, experience/death/weapon break flows), `Script/attack/attack_order.js` (NormalAttackOrderBuilder, VirtualAttackControl, AttackEvaluator.*), `Script/attack/attack_core.js`, `Script/attack/attack_realbattle.js`, `Script/attack/attack_commonbattle.js`, `Script/attack/attack_easybattle.js`, related in `Script/singleton/singleton-struct.js`, calculators (see separate page), `Script/utility/utility-event.js`, and overrides in `plugin_official/battle-*.js`, `custom-drop.js`, `skill-*.js`, `state-*.js` etc.
+**Key references:** The base attack/ files (attack_pre.js, attack_flow.js, attack_order.js and related), singleton-struct.js, utility-event.js, and the calculators. Patterns and extensions are shown in official plugins (battle-*.js and similar).
 
 Battle is orchestrated via StraightFlow insertion points and evaluator registration — very plugin friendly.
 
@@ -102,11 +102,11 @@ Drawing can be skipped in some paths.
 - [calculators-damage-hit-critical.md](calculators-damage-hit-critical.md) (the math called from here)
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md) (StraightFlow + BaseFlowEntry contract)
 - [overriding-patterns.md](overriding-patterns.md)
-- `Script/attack/attack_pre.js` and `attack_flow.js` (the primary push points and default flow entries)
-- `Script/attack/attack_order.js` (evaluators)
-- `Script/attack/attack_realbattle.js` etc. for UI
-- `plugin_official/battle-*.js`, `custom-drop.js`, `skill-debuffafterbattle.js`, `state-*.js`
-- `api_references/volatile.html` (AttackInfo, VirtualAttackUnit, etc. structs)
-- `api_references/asset.html` (Anime, OriginalMotion for custom battle graphics)
+- The base attack_pre.js and attack_flow.js (the primary push points and default flow entries)
+- attack_order.js (evaluators) in the base scripts
+- attack_realbattle.js etc. for UI
+- Official plugins such as battle-*.js, custom-drop.js, skill-debuffafterbattle.js, state-*.js
+- The API reference volatile.html (AttackInfo, VirtualAttackUnit, etc. structs)
+- asset.html (Anime, OriginalMotion for custom battle graphics) in the documentation
 
 Battle extensions often combine calculator changes + flow insertions + custom effects. Virtual simulation means changes are "felt" by the AI preview and ordering as well.

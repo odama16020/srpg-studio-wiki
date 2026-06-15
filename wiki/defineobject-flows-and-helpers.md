@@ -1,6 +1,6 @@
 # defineObject, Flows, and Core Helpers
 
-**Sources:** `Script/base/base-top.js` (defineObject, createObject and factories, BaseObject), `Script/base/base-objects.js` (BaseEventCommand, BaseScene, BaseScreen, BaseWindow, BaseFlowEntry, BaseBattle etc.), `Script/utility/utility-object.js` (StraightFlow, helpers), `Script/utility/utility-event.js` (DynamicEvent, CapsuleEvent, EventChecker), `Script/singleton/singleton-struct.js` (StructureBuilder), `Script/attack/attack_pre.js`, `Script/attack/attack_flow.js`, `Script/item/item-base.js`, `Script/map/map-enemyturnai.js`, and usage throughout `plugin_official/` (custom-drop.js, custom-item.js, state-hprecovery.js, battle-*.js, scriptexecute-*.js etc.).
+**Key references:** The base base-top.js and base-objects.js (defineObject, createObject, Base* classes), utility-object.js and utility-event.js (StraightFlow, DynamicEvent), singleton-struct.js, and various flow-related files in attack/, item/, and map/. Official plugins provide concrete usage examples.
 
 These are the fundamental building blocks for custom objects and sequenced behavior.
 
@@ -141,7 +141,7 @@ var MyEntry = defineObject(BaseFlowEntry, {
 
 Many core entries also implement `isFlowSkip` or check skip inside.
 
-**Plugin usage:** Alias the host's push method (see overriding-patterns.md) and insert your FlowEntry. See `plugin_official/custom-drop.js` for a full minimal DropFlowEntry example using DynamicEvent.
+**Plugin usage:** Alias the host's push method (see overriding-patterns.md) and insert your FlowEntry. Official plugins such as custom-drop.js provide full minimal DropFlowEntry examples using DynamicEvent.
 
 ## DynamicEvent (for Running Event Commands from Code)
 
@@ -165,7 +165,7 @@ In move cycle of the caller:
 return this._dynamicEvent.moveDynamicEvent();
 ```
 
-(See: `Script/utility/utility-event.js`, heavy usage in `plugin_official/custom-drop.js`, battle-autoitem.js, many scriptexecute-*.js, custom-item.js implementations.)
+(See: utility-event.js in the base scripts, with heavy usage in official plugins such as custom-drop.js, and similar implementations in battle-autoitem.js, scriptexecute-*.js, custom-item.js.)
 
 Related: `DynamicAnime` for animation side effects, `CapsuleEvent` + `EventChecker` for running map/talk/etc. events with proper execution marking.
 
@@ -193,7 +193,7 @@ info.battleType = BattleType.REAL;
 // pass to attack functions or PreAttack
 ```
 
-(See `Script/singleton/singleton-struct.js` for the full builder; used throughout attack/, map/, item/.)
+(See the base singleton-struct.js for the full builder; used throughout attack, map, item, and related base files.)
 
 ScreenBuilder has analogous `buildShopLayout`, `buildUnitMenu`, `buildConfig` etc. for launching screens.
 
@@ -226,5 +226,5 @@ Always return the documented result constants. Respect skip modes.
 - [es5-compatibility.md](es5-compatibility.md)
 - [battle-flows-and-attacks.md](battle-flows-and-attacks.md) (heavy StraightFlow users)
 - [events-dynamic-script.md](events-dynamic-script.md)
-- `Script/base/base-top.js`, `Script/base/base-objects.js`, `Script/utility/utility-event.js`, `Script/singleton/singleton-struct.js` (read these directly for the authoritative implementations and comments).
+- The base base-top.js, base-objects.js, utility-event.js, and singleton-struct.js (read these directly for the authoritative implementations and comments).
 - Many official plugins for complete small FlowEntry + DynamicEvent examples.

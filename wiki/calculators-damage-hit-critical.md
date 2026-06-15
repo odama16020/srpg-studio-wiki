@@ -1,6 +1,6 @@
 # Calculators (Damage, Hit, Critical, Ability, Experience)
 
-**Sources:** Primary definition and logic in `Script/singleton/singleton-calculator.js` (AbilityCalculator, DamageCalculator, HitCalculator, CriticalCalculator, Calculator, SupportCalculator, CompatibleCalculator, ExperienceCalculator, ExperienceControl, RestrictedExperienceControl, ParameterControl, SymbolCalculator). Also referenced in `Script/singleton/singleton-paramgroup.js`, `Script/singleton/singleton-itemcontrol.js`, `Script/singleton/singleton-system.js` (Miscellaneous, PosChecker), attack/ files, and many overrides in `plugin_official/calc-*.js` + custom-*.js.
+**Key references:** Primary definition and logic in the base script singleton-calculator.js (AbilityCalculator, DamageCalculator, HitCalculator, CriticalCalculator, etc.). Also referenced in other base files such as singleton-paramgroup.js and singleton-system.js, and illustrated in official plugins such as calc-*.js.
 
 These singletons are the heart of combat math and the most commonly patched objects for balance mods, new skills, terrain effects, etc.
 
@@ -32,7 +32,7 @@ AbilityCalculator.getPower = function(unit, weapon) {
 // similar for getHit, getCritical
 ```
 
-(See `plugin_official/calc-goodweapon.js`.)
+(See the official plugin calc-goodweapon.js.)
 
 ## DamageCalculator
 
@@ -159,9 +159,9 @@ See enumerated-types.md and constants.
 - [es5-compatibility.md](es5-compatibility.md)
 - [overriding-patterns.md](overriding-patterns.md) (the alias recipe)
 - [custom-parameters-keywords-originaldata.md](custom-parameters-keywords-originaldata.md) (how custom params feed into these)
-- `Script/singleton/singleton-calculator.js` (full source — read it; ~1300 lines of the actual math)
-- `plugin_official/calc-goodweapon.js`, `$calc-*.js`, `calc-goodweapon.js` variants, skill-parameterbonus.js, terrain-parameterbonus.js
-- `api_references/` for DataConfig / DefineControl exposure (via root.getConfigInfo / UserExtension etc.)
+- The base singleton-calculator.js (full source — read it; the actual math)
+- Official plugins such as calc-goodweapon.js and related calc- variants, skill-parameterbonus.js, terrain-parameterbonus.js
+- The API reference for DataConfig / DefineControl exposure (via root.getConfigInfo / UserExtension etc.)
 - Attack flow pages for how calculators are called during real combat.
 
 When overriding, remember that virtual attack simulation (for AI and preview) also goes through many of these — changes affect both player-visible numbers and enemy decisions.

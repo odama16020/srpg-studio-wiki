@@ -1,12 +1,12 @@
 # Getting Started with SRPG Studio Plugins
 
-**Sources:** Structure and comments in `Script/info.ini`, `Script/executive/executive-scriptcall.js`, `Script/base/base-top.js`, `Script/base/base-objects.js`, `Script/map/map-enemyturnai.js` (AI comment), `item/item-base.js` (custom item comments), `api_references/` (Root, sessions, generators), and the consistent patterns + headers in every file under `plugin_official/`.
+**Key references:** Structure and comments in the base script files (such as info.ini, executive-scriptcall.js, base-top.js, base-objects.js, map-enemyturnai.js, item-base.js), the engine's API reference documentation, and patterns + headers from the official example plugins.
 
 This page gives the big picture before you dive into specifics. **Always read es5-compatibility.md first.**
 
 ## What Is a Plugin Here?
 
-In SRPG Studio, "plugins" are .js files that are executed after the base `Script/` has defined all its objects and functions. They extend or replace behavior by:
+In SRPG Studio, "plugins" are .js files that are executed after the base overridable scripts have defined all their objects and functions. They extend or replace behavior by:
 
 - Reassigning methods on singleton objects (alias pattern)
 - Registering new objects into configuration arrays (configure + appendObject)
@@ -15,19 +15,21 @@ In SRPG Studio, "plugins" are .js files that are executed after the base `Script
 - Subclassing Base* via defineObject and returning them from hooks
 - Overriding top-level ScriptCall_* in some cases
 
-The `Script/` directory contains the **overridable foundation** (calculators, AI bases, item packages, command managers, flows, etc.). `plugin_official/` shows the approved ways to hook in.
+The base overridable scripts contain the **overridable foundation** (calculators, AI bases, item packages, command managers, flows, etc.). The official example plugins show the approved ways to hook in.
 
 You do **not** edit Script/ directly (it would be overwritten on engine update or project refresh). You add .js files that patch at runtime.
 
-## Project Layout (Relevant to Plugins)
+## Typical Project Layout (Relevant to Plugins)
 
-- `Script/` — Base definitions (load order in info.ini). Read these to find what to override.
-- `plugin_official/` — Official extensions (your primary reference for patterns and "this is supported").
-- `api_references/*.html` — Raw docs for the engine objects exposed on `root`, sessions, assets, generators, etc.
-- `Plugin/` (and unused) — User-created unofficial plugins (use for ideas only; never name them in your own plugins or this wiki).
-- Other folders (Graphics, Audio, Material, Save, etc.) are data or editor resources.
+In a standard SRPG Studio project you will commonly encounter:
 
-When developing, you typically edit .js files that will be placed in the project's plugin folder (or equivalent) so they are included when the game is built/run.
+- A Script (or equivalent base scripts) folder — This contains the overridable foundation: calculators, AI base classes, item package definitions, command managers, flow logic, etc. These are the files you read to discover what to override or extend. Do not edit them directly, as they can be reset on engine or project updates.
+- Official example plugins (often provided when the official samples are included with the project or engine) — These demonstrate supported patterns and are excellent references for "how the engine developers intend extensions to be written."
+- The engine's API reference documentation (HTML files) — These document the objects and methods available on `root`, sessions, assets (Unit, Item, etc.), generators, and so on.
+- User/community plugins (often in a `Plugin/` folder or equivalent) — These are unofficial extensions created by other users. They can be useful for inspiration, but you should not copy specific code or name them when distributing your own work or contributing to shared wikis.
+- Data and resource folders (Graphics, Audio, Material, Save, etc.).
+
+When developing plugins, you add or edit .js files in the location your project uses for plugins (commonly a Plugin or similar folder) so that they are picked up when building or running the game.
 
 ## Minimal Plugin Skeleton (ES5)
 
@@ -62,7 +64,7 @@ AbilityCalculator.getPower = function(unit, weapon) {
 })();
 ```
 
-Copy the header style + IIFE + alias discipline exactly from `plugin_official/calc-goodweapon.js` (or any small official file).
+Copy the header style + IIFE + alias discipline exactly from an official plugin example such as calc-goodweapon.js (or any small official file).
 
 ## Key Things to Internalize Early
 
@@ -74,7 +76,7 @@ Copy the header style + IIFE + alias discipline exactly from `plugin_official/ca
 6. **DynamicEvent for side effects** — The clean way to do HP changes, item grants, messages, state adds, etc. from code.
 7. **Different paths for player vs AI** — Especially for items (BaseItemAvailability vs BaseItemAI) and commands.
 8. **Skip modes** — Every move/draw implementation must respect complete skip / event skip / flow skip or fast-forward breaks.
-9. **Sources of truth** — `Script/*.js` for the actual overridable code, `api_references/*.html` for the public Root/asset/session/generator API, `plugin_official/` for how the engine authors recommend doing things.
+9. **Sources of truth** — the base overridable script files for the actual definitions and hooks, the engine's API reference HTML documentation for public objects and methods, and the official example plugins for recommended implementation patterns.
 
 ## Recommended Reading Order
 

@@ -1,6 +1,6 @@
 # Custom Parameters, Keywords, and Original Data
 
-**Sources:** Widespread usage and comments in `Script/` (singleton-paramgroup.js, singleton-itemcontrol.js, item/item-base.js, map/map-enemyturnai.js, utility/utility-event.js, constants/constants-enumeratedtype.js, singleton-system.js etc.), heavy patterns in `plugin_official/` (calc-goodweapon.js, custom-*.js for unit/class/item/skill/state/weapon, custom-drop.js, skill-*.js, terrain-*.js, eventtrigger-*.js, scriptexecute-*.js, extra_classroot.js, variable-*.js), and asset definitions in `api_references/asset.html`, `api_references/item.html`, `api_references/volatile.html`.
+**Key references:** Usage and comments throughout the base scripts (singleton-paramgroup.js, item-base.js, singleton-system.js, etc.), official plugins (calc-goodweapon.js, various custom-*.js, etc.), and the API reference documentation (asset.html, item.html, volatile.html).
 
 These mechanisms let you attach arbitrary data to editor objects and dispatch to custom code without modifying core files.
 
@@ -30,7 +30,7 @@ Common places:
 - Map data, place events, etc. via `event.getPlaceEventInfo()` or map custom.
 
 **Examples from official:**
-- `plugin_official/calc-goodweapon.js`: `unit.custom.goodweapon = [{name:'剣', pow:5, hit:0, crt:0}, ...]`
+- Official plugin calc-goodweapon.js: `unit.custom.goodweapon = [{name:'剣', pow:5, hit:0, crt:0}, ...]`
 - Many custom-*.js use similar for drops, anime off, parameter bonuses, state ids, etc.
 - `root.getExternalData().env` for cross-save/plugin config (guarded the same way).
 
@@ -90,7 +90,7 @@ Common in:
 - AI target aggregation conditions.
 - Many eventtrigger-*.js and custom-placeevent.js.
 
-See `api_references/asset.html` (OriginalData, OriginalContent) and queryasset for BaseData.
+See the API reference asset.html (OriginalData, OriginalContent) and queryasset for BaseData.
 
 This is the preferred way to make "data only" extensions that designers can tweak in the editor.
 
@@ -139,6 +139,6 @@ if (agg !== null && agg.isCondition(targetUnit)) {
 - [item-system-custom-items.md](item-system-custom-items.md) (keywords in action for items)
 - [ai-enemy-behavior.md](ai-enemy-behavior.md) (aggregations in collectors)
 - [calculators-damage-hit-critical.md](calculators-damage-hit-critical.md) (custom in getPower etc.)
-- `plugin_official/calc-goodweapon.js`, `plugin_official/custom-*.js` (canonical examples)
-- `Script/singleton/singleton-paramgroup.js` (`_configureUnitParameters` for adding new param types that then appear in .custom growth etc.)
-- `api_references/asset.html`, `api_references/item.html`, `api_references/volatile.html` (full spec of custom() and OriginalContent).
+- Official plugins such as calc-goodweapon.js and various custom-*.js (canonical examples)
+- The base singleton-paramgroup.js (`_configureUnitParameters` for adding new param types that then appear in .custom growth etc.)
+- The API reference asset.html, item.html, volatile.html (full spec of custom() and OriginalContent).

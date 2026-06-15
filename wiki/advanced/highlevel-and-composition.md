@@ -1,6 +1,6 @@
 # Advanced Topics: Custom Scenes, High-Level APIs, Composition, and WorldMatrix
 
-**Sources:** `plugin_official/$ハイレベル/` (highlevel-*.js), `plugin_official/$コンポジション API/` (composition-*.js), `plugin_official/WorldMatrix/` (worldmatrix-*.js), plus supporting usage in other official files and core references in `api_references/manager.html` (GraphicsManager createComposition/createMatrix/getCanvas), `api_references/volatile.html` (GraphicsComposition/Matrix/Canvas/Figure/Gradient/Decoration), `api_references/asset.html` and `api_references/subasset.html` (InteropScreen etc.), and base patterns from Script/.
+**Key references:** Official plugins in the highlevel, composition, and WorldMatrix example groups, plus supporting usage in other official plugins and the API reference documentation (manager.html, volatile.html, asset.html, subasset.html). Base patterns are described in the main Script files.
 
 These are higher-level or graphics-oriented extensions. They still rely on the core alias/defineObject/DynamicEvent patterns described elsewhere, but introduce additional objects and performance/ rendering requirements.
 
@@ -101,9 +101,9 @@ Even in advanced files:
 - [root-sessions-api.md](../root-sessions-api.md) (createComposition, matrix, canvas details)
 - [defineobject-flows-and-helpers.md](../defineobject-flows-and-helpers.md) and [overriding-patterns.md](../overriding-patterns.md) (still apply)
 - [references/official-plugin-patterns.md](../references/official-plugin-patterns.md) (category descriptions for the subdirs)
-- The source files in `plugin_official/$コンポジション API/`, `$ハイレベル/`, `WorldMatrix/` (small, focused demos with headers explaining requirements)
-- `api_references/volatile.html` (full Composition/Matrix/Canvas/Decoration specs)
-- `api_references/manager.html` (GraphicsManager advanced methods)
-- `api_references/subasset.html` (InteropScreen for custom scenes)
+- The official example files in the composition, highlevel, and WorldMatrix groups (small, focused demos with headers explaining requirements)
+- The API reference volatile.html (full Composition/Matrix/Canvas/Decoration specs)
+- manager.html (GraphicsManager advanced methods)
+- subasset.html (InteropScreen for custom scenes)
 
 Advanced features let you create presentation that goes far beyond the default SRPG Studio look, but they require more care around state management, performance, and rendering mode. Always fall back to the core ES5 patterns and test thoroughly.

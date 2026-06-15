@@ -1,6 +1,6 @@
 # Root, Sessions, Generators, and Core API
 
-**Sources:** `api_references/index.html` (Root), `api_references/session.html` (MetaSession, GameSession, RestSession, ExternalData), `api_references/queryasset.html` (BaseData, ConfigInfo, UserExtension, Preferences), `api_references/manager.html` (managers, SceneController, Switch/VariableTable), `api_references/generator.html` (ObjectGenerator, EventGenerator), `api_references/volatile.html` (ResourceHandle, Aggregation, MapSimulator, SupportStatus, etc.), `api_references/asset.html` and others for cross-refs. Usage patterns confirmed across `Script/` singletons and `plugin_official/`.
+**Key references:** The engine's API reference documentation (index.html for Root, session.html, queryasset.html, manager.html, generator.html, volatile.html, asset.html, etc.). Usage patterns appear throughout the base scripts and official plugins.
 
 `root` is the global entry point. Sessions provide the current game state. Generators create units and event commands programmatically.
 
@@ -23,7 +23,7 @@ Key accessors (call these constantly):
 - Input/mouse: `isInputAction`, `isInputState`, mouse pos/state
 - Other: `resetGame`, `endGame`, fullscreen/soft screen, `duplicateItem`, `setMaxParameter`
 
-See full method list in `api_references/index.html#Root`.
+See the full method list in the Root section of the API reference documentation (index.html).
 
 ## Sessions
 
@@ -130,8 +130,8 @@ Always null-check lists and handles.
 - The individual api_references/*.html files (especially index.html for root, session.html, generator.html, volatile.html, manager.html).
 - [assets-and-datalists.md](assets-and-datalists.md)
 - [utilities-and-structs.md](utilities-and-structs.md)
-- `Script/singleton/singleton-system.js` (PosChecker, IndexArray, LayoutControl, Miscellaneous, Probability — thin wrappers / re-exports of a lot of root/session power)
-- `Script/singleton/singleton-currentmap.js` (CurrentMap, MapView)
+- The base singleton-system.js (PosChecker, IndexArray, LayoutControl, Miscellaneous, Probability — thin wrappers / re-exports of a lot of root/session power)
+- singleton-currentmap.js (CurrentMap, MapView) in the base scripts
 - Countless uses in every plugin_official/ file.
 
 This surface is intentionally broad; most plugins only need a handful of accessors + generators + simulator. Read the HTML docs + grep the Script/ for real call sites when implementing.

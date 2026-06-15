@@ -1,6 +1,6 @@
 # Unit Commands and Map Commands
 
-**Sources:** `Script/map/map-unitcommand.js` (UnitCommand, UnitListCommand, BaseFusionCommand + dozens of *CommandMode + FlowEntry implementations for Attack, Item, Trade, Talk, Steal, Wand, Fusion, Metamorphoze, Village, etc.), `Script/map/map-mapcommand.js` (MapCommand + TurnEnd), `Script/base/base-listcommand.js` (BaseListCommandManager, BaseCommand, BaseListCommand), `Script/scene/scene-rest.js`, `Script/scene/scene-battlesetup.js`, `Script/scene/scene-title.js` (RestCommand, SetupCommand, TitleCommand), `Script/utility/utility-commandlayout.js` (CommandMixer), and registration/override examples throughout `plugin_official/` (custom-*.js, scriptexecute-*.js, window-*.js, other-*.js).
+**Key references:** The base map-unitcommand.js, map-mapcommand.js, base-listcommand.js, and related scene files. Registration and override patterns are shown in various official plugins.
 
 Commands are the menu actions available to the player (and sometimes AI/events).
 
@@ -105,9 +105,9 @@ For commands that launch full screens, use `SceneManager.addScreen` or the execu
 - [overriding-patterns.md](overriding-patterns.md)
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md)
 - [events-dynamic-script.md](events-dynamic-script.md) (for command-triggered effects)
-- `Script/map/map-unitcommand.js` (the monster file — study the existing AttackCommandMode / ItemCommandMode / TalkCommandMode etc. for patterns)
-- `Script/base/base-listcommand.js`
-- `plugin_official/` files that touch commands (search for configureCommands or appendObject in the dir)
-- `api_references/` for related event command and screen interop. 
+- The base map-unitcommand.js (study the existing AttackCommandMode / ItemCommandMode / TalkCommandMode etc. for patterns)
+- base-listcommand.js in the base scripts
+- Official plugin files that touch commands (search for configureCommands or appendObject patterns)
+- The API reference for related event command and screen interop.
 
 Commands are one of the most "visible" extension points for players and a great place to add quality-of-life or new tactical options.

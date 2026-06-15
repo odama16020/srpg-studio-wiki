@@ -1,6 +1,6 @@
 # Overriding Patterns
 
-**Sources:** `Script/` (base/base-listcommand.js, map/map-unitcommand.js, map/map-mapcommand.js, map/map-enemyturn.js, item/item-base.js, singleton/singleton-itemcontrol.js, attack/attack_pre.js, attack/attack_flow.js, utility/utility-object.js and many others), `plugin_official/` (calc-goodweapon.js, custom-item.js, custom-drop.js, ai-*.js, battle-*.js, skill-*.js, system-*.js, scriptexecute-*.js, terrain-*.js, config-*.js, window-*.js and ~dozens more), cross-referenced against `api_references/`.
+**Key references:** Base files such as base-listcommand.js, map-unitcommand.js, map-mapcommand.js, map-enemyturn.js, item-base.js, singleton-itemcontrol.js, attack_pre.js, attack_flow.js, and utility-object.js, plus many official plugins (calc-goodweapon.js, custom-item.js, custom-drop.js, ai-*.js, battle-*.js, etc.), cross-referenced against the API documentation.
 
 The primary way to extend SRPG Studio is **monkey-patching** (aliasing) existing singleton objects or registration via `_configure*` / `configure*` hooks + `appendObject` / `pushFlowEntry`. Direct inheritance via `defineObject` is used for new behaviors that are then registered.
 
@@ -53,7 +53,7 @@ AbilityCalculator.getHit = function(unit, weapon) {
 // ... more
 ```
 
-(See: `plugin_official/calc-goodweapon.js` for complete minimal example; also state-hprecovery.js, face-disablereverse.js, $calc-multiply.js.)
+(See: the official plugin calc-goodweapon.js for a complete minimal example; also state-hprecovery.js, face-disablereverse.js, and similar variants.)
 
 ## Registration / Append Patterns
 
@@ -73,7 +73,7 @@ UnitCommand.configureCommands = function(groupArray) {
 
 Similar for `MapCommand.configureCommands`, `RestCommand.configureCommands`, `SetupCommand.configureCommands`, `TitleScene._configureTitleItem`, `ConfigWindow._configureConfigItem`, `screen-extra._configureExtraScreens`, etc.
 
-Sources: `Script/map/map-unitcommand.js`, `Script/map/map-mapcommand.js`, `Script/base/base-listcommand.js`, `scene/scene-rest.js`, `scene/scene-battlesetup.js`, `scene/scene-title.js`, `screen/screen-config.js`, `screen/screen-extra.js`, and many official custom-*.js + window-*.js.
+Sources in base scripts: map-unitcommand.js, map-mapcommand.js, base-listcommand.js, and the relevant scene files (scene-rest.js etc.), plus many official plugins (custom-*.js + window-*.js).
 
 ### ItemPackageControl (for ItemType.CUSTOM)
 
@@ -104,7 +104,7 @@ var MyItemUse = defineObject(BaseItemUse, { ... });
 // etc. for all six Base* (see item-system-custom-items.md)
 ```
 
-(See full: `plugin_official/custom-item.js`, `Script/item/item-base.js`.)
+(See full: the official plugin custom-item.js and the base item-base.js.)
 
 ### Flow Insertion (Attack, PreAttack, Item Use, Turns, etc.)
 
@@ -123,7 +123,7 @@ Common hosts:
 - `AutoActionBuilder._pushMove` etc.
 - Many scene/turn straight flows
 
-(See: `attack/attack_pre.js`, `attack/attack_flow.js`, `plugin_official/custom-drop.js`, battle-*.js, music-*.js.)
+(See: attack_pre.js and attack_flow.js in the base scripts, the official plugin custom-drop.js, battle-*.js, music-*.js.)
 
 ### AI Configuration
 
@@ -139,7 +139,7 @@ Primary documented extension (from comment in source):
 
 Register new collectors/scorers via the `_configure*` methods on the turn object, then provide `CombinationCollector.XXX`, `AIScorer.XXX`, `XXXAutoAction`.
 
-(See: `Script/map/map-enemyturnai.js:2-5`, `Script/map/map-enemyturn.js`, `plugin_official/ai-*.js`, `plugin_official/custom-pattern.js`.)
+(See: the base map-enemyturnai.js lines 2-5, map-enemyturn.js, and official plugins ai-*.js, custom-pattern.js.)
 
 ### Other Common _configure Hooks
 
@@ -206,5 +206,5 @@ For new objects + registration, combine alias on the registration point + one or
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md)
 - [item-system-custom-items.md](item-system-custom-items.md)
 - [ai-enemy-behavior.md](ai-enemy-behavior.md)
-- `plugin_official/` for dozens of real minimal examples (search for `var alias` inside the dir).
-- Core registration sites: `Script/map/map-unitcommand.js` (configureCommands and the many UnitCommand.*), `Script/item/item-base.js` (ItemPackageControl), `Script/attack/attack_*.js` (flow push methods).
+- Official plugins for dozens of real minimal examples (search for `var alias` patterns).
+- Core registration sites in the base scripts: map-unitcommand.js (configureCommands and the many UnitCommand.*), item-base.js (ItemPackageControl), attack_*.js (flow push methods).

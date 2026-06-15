@@ -1,6 +1,6 @@
 # AI and Enemy Turn Behavior
 
-**Sources:** Explicit architecture comment and implementation in `Script/map/map-enemyturnai.js` (BaseCombinationCollector, BaseAIScorer, BaseAutoAction + many concrete collectors/scorers/actions + AutoActionBuilder, CombinationManager, CombinationBuilder), `Script/map/map-enemyturn.js` (EnemyTurn, the _configure* hooks, AutoActionBuilder integration), `Script/map/map-cource.js` (CourceBuilder), `Script/singleton/singleton-unitlist.js` (FilterControl, Simulation*Control, CostRule, BlockerRule), `Script/singleton/singleton-system.js` (PosChecker, IndexArray, AttackChecker, Miscellaneous), and patterns in `plugin_official/ai-*.js`, `plugin_official/custom-pattern.js`, `plugin_official/custom-npc.js` etc.
+**Key references:** Explicit architecture comment and implementation in the base map-enemyturnai.js (BaseCombinationCollector, BaseAIScorer, BaseAutoAction and related classes), map-enemyturn.js (configuration hooks), and supporting files such as singleton-unitlist.js and singleton-system.js. Patterns are also shown in official plugins (ai-*.js and similar).
 
 The comment at the top of map-enemyturnai.js is the design doc:
 
@@ -74,7 +74,7 @@ EnemyTurn._configureCombinationCollector = function(groupArray) {
 
 Then also ensure the matching scorer and auto action are registered in the appropriate stages.
 
-See `Script/map/map-enemyturn.js` around line 1113+ for the configure methods, and `plugin_official/ai-combinationselector.js`, `ai-multiplegoals.js`, `ai-scoredisabled.js` for examples of extending the tables.
+See the base map-enemyturn.js around the configure methods, and official plugins such as ai-combinationselector.js, ai-multiplegoals.js, ai-scoredisabled.js for examples of extending the tables.
 
 ## Supporting Systems
 
@@ -115,10 +115,10 @@ Official `custom-pattern.js` shows a RANDOM movement pattern using simulator + c
 - [overriding-patterns.md](overriding-patterns.md) (the configure + append pattern)
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md) (BaseAutoAction is a full enter/move/draw object)
 - [commands-unit-map.md](commands-unit-map.md) (some overlap with custom player commands vs AI)
-- `Script/map/map-enemyturnai.js` (the big one — read the collector/scorer/action base classes and existing concrete ones)
-- `Script/map/map-enemyturn.js` (the registration and AutoActionBuilder)
-- `plugin_official/ai-*.js` and `custom-pattern.js` (real official extensions)
-- `api_references/volatile.html` (MapSimulator details)
-- `api_references/pattern.html` (AIPattern). 
+- The base map-enemyturnai.js (the main file — read the collector/scorer/action base classes and existing concrete ones)
+- map-enemyturn.js (the registration and AutoActionBuilder)
+- Official plugins such as ai-*.js and custom-pattern.js (real official extensions)
+- The API reference volatile.html (MapSimulator details)
+- pattern.html (AIPattern) in the documentation.
 
 AI is one of the areas where the "three objects" contract is most explicitly documented in source comments.

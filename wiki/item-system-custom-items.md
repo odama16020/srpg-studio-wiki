@@ -1,6 +1,6 @@
 # Item System and Custom Items
 
-**Sources:** Core logic in `Script/item/item-base.js` (ItemPackageControl, BaseItemSelection, BaseItemUse, ItemUseParent, BaseItemInfo, BaseItemPotency, BaseItemAvailability, BaseItemAI + all the FlowEntry subclasses), `Script/singleton/singleton-itemcontrol.js` (ItemControl, UnitItemControl, StockItemControl, ItemChangeControl), individual `Script/item/item-*.js` (recovery, damage, key, steal, fusion etc.), `Script/singleton/singleton-system.js` (ItemRangeControl, ItemIdentityChecker, Miscellaneous), and extensive examples + registration in `plugin_official/custom-item.js` + other custom-*, skill-*, scriptexecute-*.
+**Key references:** Core logic in the base item-base.js (ItemPackageControl and the BaseItem* classes), singleton-itemcontrol.js, individual item-*.js files, and singleton-system.js. Extensive patterns and examples are shown in official plugins such as custom-item.js and related files.
 
 Items are one of the richest extension surfaces because of the explicit "custom item" package system.
 
@@ -54,7 +54,7 @@ Default implementations return the built-in Base* for known ItemType. For CUSTOM
 
 If keyword matches your string, return your defined object; otherwise fall through to alias.
 
-See overriding-patterns.md for the exact alias + if (keyword === My_getCustomKeyword()) pattern. Full working example in `plugin_official/custom-item.js`.
+See overriding-patterns.md for the exact alias + if (keyword === My_getCustomKeyword()) pattern. A full working example is provided in the official plugin custom-item.js.
 
 ## The Six Base* You Implement for Custom Items
 
@@ -124,7 +124,7 @@ You often need both for items that enemies should be able to use intelligently.
 
 Core types (ItemType enum): UNUSABLE, RECOVERY, ENTIRERECOVERY, DAMAGE, DOPING, CLASSCHANGE, SKILLGET, KEY, QUICK, TELEPORTATION, RESCUE, RESURRECTION, DURABILITY, STEAL, STATE, STATERECOVERY, SWITCH, FUSION, METAMORPHOZE, **CUSTOM:100**
 
-Each has a dedicated implementation file under `Script/item/` that provides the default Base* objects for that type. Custom items usually don't inherit those directly; they implement from the Base* in item-base.js and replicate needed logic (or delegate).
+Each has a dedicated implementation file in the base item scripts that provides the default Base* objects for that type. Custom items usually don't inherit those directly; they implement from the Base* in item-base.js and replicate needed logic (or delegate).
 
 Range is handled via `ItemRangeControl.getRangeObject(item)` (returns {rangeValue, rangeType}).
 
@@ -137,7 +137,7 @@ Range is handled via `ItemRangeControl.getRangeObject(item)` (returns {rangeValu
 - Exp on use: the ItemExpFlowEntry path is handled by the parent if you call the right methods or let the flow run.
 - Durability / limited uses: `item.getLimit()` / decrease via the use object.
 
-See `plugin_official/custom-item.js` (the reference implementation) + OT_ExtraItem style items for advanced range/effect examples (for inspiration only; do not name them in final wiki text).
+See the official plugin custom-item.js (the reference implementation) and similar advanced item plugins among the official samples for range/effect examples.
 
 ## Other Useful Item-Related
 
@@ -162,9 +162,9 @@ See `plugin_official/custom-item.js` (the reference implementation) + OT_ExtraIt
 - [overriding-patterns.md](overriding-patterns.md) (the 6 getCustom* aliases)
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md) (DynamicEvent + FlowEntry inside items)
 - [custom-parameters-keywords-originaldata.md](custom-parameters-keywords-originaldata.md)
-- `Script/item/item-base.js` (read the comments around BaseItemAvailability vs BaseItemAI and ItemUseParent)
-- `Script/singleton/singleton-itemcontrol.js`
-- `plugin_official/custom-item.js` (full reference custom item package)
-- Individual item-*.js for how built-in types implement the bases (copy patterns)
-- `api_references/item.html` for the info structs (RecoveryInfo, DamageInfo, etc.)
-- `api_references/asset.html` (Item asset methods).
+- The base item-base.js (read the comments around BaseItemAvailability vs BaseItemAI and ItemUseParent)
+- singleton-itemcontrol.js in the base scripts
+- The official plugin custom-item.js (full reference custom item package)
+- Individual item-*.js files in the base scripts for how built-in types implement the bases (copy patterns)
+- The API reference item.html for the info structs (RecoveryInfo, DamageInfo, etc.)
+- asset.html (Item asset methods) in the documentation.

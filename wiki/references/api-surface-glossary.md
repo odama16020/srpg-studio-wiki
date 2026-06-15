@@ -1,6 +1,6 @@
 # API Surface Glossary (Condensed)
 
-**Sources:** All `api_references/*.html` (index.html for Root, session.html, asset.html, datalist.html, manager.html, generator.html, volatile.html, event.html, eventcommand.html, item.html, queryasset.html, resource.html, pattern.html, subasset.html). This is a navigation aid and quick reference — always cross-check the HTML for full signatures and return types.
+**Key references:** The engine's API reference documentation (the collection of .html files including index.html for Root, session.html, asset.html, datalist.html, manager.html, generator.html, volatile.html, event.html, eventcommand.html, item.html, etc.). This is a navigation aid and quick reference — always cross-check the HTML for full signatures and return types.
 
 ## Root (index.html)
 

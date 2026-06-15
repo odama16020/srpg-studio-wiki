@@ -1,6 +1,6 @@
 # ES5 Compatibility (Critical)
 
-**Sources:** Analysis of all files under `Script/` (156+ .js including singleton-calculator.js, map-enemyturnai.js, item-base.js, base/*.js, constants/*.js, attack/*.js etc.), `plugin_official/` (nearly 200 .js including calc-*.js, custom-*.js, ai-*.js), and cross-checks against `api_references/`. Confirmed via exhaustive searches: zero uses of `let`, `const`, arrow functions, or modern array methods in the core Script and official plugins.
+**Key references:** Analysis of the base overridable scripts (including singleton-calculator.js, map-enemyturnai.js, item-base.js and related files) and official plugins (calc-*.js, custom-*.js, ai-*.js etc.), cross-checked against the API reference documentation. Confirmed via searches: the core scripts and official plugins use only var, classic for loops, function declarations, and IIFEs — no let, const, arrows, or many modern array methods.
 
 SRPG Studio plugins execute in a **very old JavaScript environment** (ES5-era or earlier, similar to legacy browser/embedded JS engines of the time the engine was built). Modern ECMAScript features are **not supported** or unreliable. Using them will cause runtime errors or silent failures that are hard to debug in-game.
 
@@ -24,7 +24,7 @@ SRPG Studio plugins execute in a **very old JavaScript environment** (ES5-era or
 - Block-scoped anything, `const` enum tricks, etc.
 
 **Evidence from sources:** 
-- `Script/` and `plugin_official/` contain only `var`, classic `for` loops, `function` declarations/expressions, `indexOf` usage where needed, and IIFEs.
+- The base scripts and official plugins contain only `var`, classic `for` loops, `function` declarations/expressions, `indexOf` usage where needed, and IIFEs.
 - Searches for `\blet\b`, `\bconst\b` (as declarations), `=>`, `\.includes\(`, `\.find\(`, arrow in function position, and template backticks returned zero relevant hits in core + official.
 
 ## Required Patterns (Copy These)
@@ -174,7 +174,7 @@ function indexOfPoly(arr, val) {
 
 ## Best Practice Summary
 
-1. Start every new plugin file by copying the header + IIFE skeleton from `plugin_official/calc-goodweapon.js` (or any small official).
+1. Start every new plugin file by copying the header + IIFE skeleton from a small official plugin example such as calc-goodweapon.js (or any similar minimal official file).
 2. Write your logic using only `var`, functions, classic for, string +, indexOf.
 3. Alias before replacing; always invoke alias with proper `this`.
 4. Guard every `.custom` and optional runtime value with `typeof`.
@@ -188,6 +188,6 @@ Violating these is the #1 cause of "works in my LLM-generated code but crashes i
 - [overriding-patterns.md](overriding-patterns.md)
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md)
 - [getting-started.md](getting-started.md)
-- Source files: `Script/base/base-top.js` (defineObject/createObject), `plugin_official/custom-item.js`, `plugin_official/calc-goodweapon.js`, all `Script/singleton/*.js` and `Script/map/map-enemyturnai.js` for style reference.
+- Key files to consult: base/base-top.js (defineObject/createObject), official plugins such as custom-item.js and calc-goodweapon.js, and representative base singleton and map files for style reference.
 
 When maintaining this wiki, re-verify the "no modern syntax" claim by searching the current Script/ + plugin_official/ before claiming support for anything new.

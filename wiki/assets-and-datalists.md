@@ -1,6 +1,6 @@
 # Assets, Units, and Data Lists
 
-**Sources:** `api_references/asset.html` (primary spec for Unit, Class, Weapon, Item, Skill, State, Terrain, and many others), `api_references/datalist.html`, `api_references/volatile.html` (Aggregation, Parameter, SupportStatus, UnitStyle, etc.), `api_references/item.html` (item sub-infos), `Script/singleton/singleton-paramgroup.js` (ParamGroup, ParamBonus, RealBonus, UnitParameter, _configureUnitParameters), `Script/singleton/singleton-itemcontrol.js`, `Script/singleton/singleton-system.js`, and usage throughout Script + plugin_official.
+**Key references:** The API reference documentation (primarily asset.html, datalist.html, volatile.html, item.html) and base script files such as singleton-paramgroup.js. Official plugins demonstrate practical usage of custom parameters and related features.
 
 ## Core Asset Objects (from BaseData lists)
 
@@ -32,7 +32,7 @@ Equipment weapon types (ReferenceList), class type (terrain bonus flag, move typ
 - Weapons: `isWeapon()` true, pow, hit, critical, weight, range (start/end), attack count, weapon level/option/category/type, effective aggregation, state invocation, weapon effect, motion collection.
 - Items: `isWeapon()` false, item type (incl CUSTOM), exp on use, range value/type (or via ItemRangeControl), specific *Info getters (RecoveryInfo, DamageInfo, ClassChangeInfo, KeyInfo, StealInfo, FusionInfo, MetamorphozeInfo, ...), doping, growth, state group, custom keyword.
 
-See `api_references/item.html` for the sub-info objects.
+See the API reference item.html for the sub-info objects.
 
 ### Skill
 
@@ -71,7 +71,7 @@ Then define a `UnitParameter` subclass that provides name, icon, getUnitValue, e
 
 Once added, `ParamBonus.getXXX(unit)`, `RealBonus.getXXX(unit)` will include it in some paths (growth, display, some calcs). Experience and doping also respect configured params.
 
-See `Script/singleton/singleton-paramgroup.js` comments and `api_references/asset.html`.
+See the base singleton-paramgroup.js comments and asset.html in the API reference.
 
 ## DataList & ReferenceList
 
@@ -103,7 +103,7 @@ See root-sessions-api.md and volatile.html for:
 - [root-sessions-api.md](root-sessions-api.md)
 - [custom-parameters-keywords-originaldata.md](custom-parameters-keywords-originaldata.md)
 - [enumerated-types.md](enumerated-types.md) (ObjectType, ParamType, SkillType, ItemType, etc.)
-- `api_references/asset.html` (the authoritative long reference — ~2500 lines)
-- `api_references/datalist.html`, `item.html`, `volatile.html`
-- `Script/singleton/singleton-paramgroup.js`
-- `Script/singleton/singleton-itemcontrol.js`, `singleton-skillcontrol.js`, `singleton-statecontrol.js` (the *Control layers on top of raw assets)
+- asset.html in the API reference documentation (the authoritative long reference)
+- datalist.html, item.html, volatile.html in the documentation
+- The base singleton-paramgroup.js
+- singleton-itemcontrol.js, singleton-skillcontrol.js, singleton-statecontrol.js in the base scripts (the *Control layers on top of raw assets)

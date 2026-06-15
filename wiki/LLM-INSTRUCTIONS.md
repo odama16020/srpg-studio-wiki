@@ -4,11 +4,11 @@
 
 ## Core Rules (Never Violate)
 
-1. **Sourcing is absolute**:
-   - You may read `Script/`, `plugin_official/`, and `api_references/` freely.
-   - You may read `llm-wiki.md` (at project root) and this entire wiki for structure and tone.
-   - You **may** read `Plugin/` and `Plugin_unused/` for implementation ideas and to discover new patterns, **but you must never mention any specific unofficial plugin filename, author, or code snippet** inside any .md file you write or edit.
-   - Every factual claim, method name, code example, or pattern must be traceable to one of the three allowed source trees. Add "Sources: ..." headers or inline notes.
+1. **Sourcing focus**:
+   - Prioritize the base overridable script files (the Script folder and its subfolders in a typical SRPG Studio project), the official example plugins, and the engine's API reference documentation (the HTML files).
+   - You may also consult the general llm-wiki.md pattern file (at the project root) and this wiki itself for tone, structure, and maintenance conventions.
+   - Unofficial/community plugins developed by users can be read privately for implementation ideas and to discover additional patterns. However, you must never mention any specific unofficial plugin filename, author, or copy code from them directly into wiki pages. This keeps the wiki generally useful across different users' setups.
+   - Every factual claim, method name, code example, or pattern should be grounded in the official base scripts, official plugins, or API docs. Use "Key references:" or "Sources:" style notes on pages.
 
 2. **ES5 compatibility is sacred**:
    - SRPG Studio plugins run in a very old JS environment.
@@ -17,15 +17,16 @@
    - When a modern construct would be clearer, immediately show the compatible equivalent.
 
 3. **Wiki is the single source of truth for future LLM plugin generation**:
-   - Future agents should be able to generate correct plugins after reading the wiki + the three source trees, without having to rediscover patterns from scratch on every session.
+   - Future agents should be able to generate correct plugins after reading the wiki plus the base Script files, official plugins, and API reference docs, without having to rediscover patterns from scratch on every session.
    - Keep cross-links dense. Update the index on every change.
+   - The wiki is designed to be portable: users may have different folder layouts or may not have all official plugins installed in their projects. Avoid hard references to any one specific project's directory layout.
 
 ## Directory & File Conventions
 
 - Mostly flat under `wiki/` for simple LLM navigation (`index.md` first, then descriptive names).
 - Only two subdirs: `references/` (glossary + patterns) and `advanced/` (high-level graphics/scenes).
 - New pages should have clear, hyphenated names.
-- Start every substantial page with a **Sources:** line listing the exact Script/plugin_official/api files used.
+- Start every substantial page with a **Key references:** or **Sources:** note that points to the relevant base script files (e.g. singleton-calculator.js), official plugin examples (e.g. calc-goodweapon.js), and/or sections of the API reference documentation. Be specific enough to be useful, but do not assume the reader has the exact same folder layout as the one used to create the wiki.
 - Use relative links: `[ES5 rules](es5-compatibility.md)`, `[DamageCalculator](calculators-damage-hit-critical.md#damagecalculator)`.
 - Code blocks are always ```js with ES5 code wrapped in IIFE where appropriate.
 - Use tables for enums, result values, and method lists where helpful.
@@ -33,7 +34,7 @@
 
 ## Maintenance Workflow (Ingest New Material)
 
-When new Script/ or plugin_official/ content appears (new engine version, new official plugins, project update):
+When updates to the base scripts or new official plugins become available (new engine version, additional official plugins released, etc.):
 
 1. **Read the index** first (`wiki/index.md`) to understand current coverage.
 2. **Identify impacted areas** by grepping the new sources for new objects, _configure*, configureCommands, pushFlowEntry sites, new calculators, new Base* implementations, new root/session methods, new enums, etc.
@@ -117,15 +118,10 @@ Use terminal / grep inside the wiki dir + source dirs:
 
 ## Initial Creation Note (2026-06-15)
 
-This wiki was created in one focused pass by analyzing:
-- Full structure of Script/ (subdirs + ~156 .js)
-- Key singletons (calculator, itemcontrol, system, paramgroup, wrapper, rendercontrol, unitlist, currentmap, skillcontrol, statecontrol, fusioncontrol, struct, customcharchip)
-- Command/AI/battle/item flow files (map-unitcommand, map-mapcommand, map-enemyturnai, map-enemyturn, attack_pre, attack_flow, attack_order, item-base, utility-event, base-*)
-- All of plugin_official/ (~200 files) for patterns and categories only
-- All api_references/*.html for the public Root/asset/session/generator surface
+This wiki was initially built by studying the base overridable scripts that ship with SRPG Studio (the Script folder and important files inside it), the official example plugins, and the engine's API reference documentation (HTML files). The work focused on extension mechanisms, common patterns, the required ES5 style, and representative official plugin implementations.
 
-18+ pages were produced with detailed excerpts, following the hybrid flat + references/advanced layout, detailed style, dedicated LLM-INSTRUCTIONS + log + es5 page, and strict sourcing.
+A number of pages were produced with detailed explanations and examples. The structure (mostly flat files with a couple of subdirectories for references and advanced topics) was chosen for easy navigation by LLMs and humans.
 
-Future sessions: treat this file as part of the schema. Update it when the maintenance process itself improves.
+Future sessions: treat this file as part of the schema. Update it when the maintenance process itself improves. Remember that this wiki is meant to be usable by people whose project directory layout or set of installed official plugins may differ.
 
 The wiki's job is to make generating correct SRPG Studio plugins (in very old JS) as reliable and low-friction as possible for LLMs and humans. Keep it healthy.

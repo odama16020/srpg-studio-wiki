@@ -1,6 +1,6 @@
 # Enumerated Types and Constants
 
-**Sources:** Primary source `Script/constants/constants-enumeratedtype.js` (130+ `var Name = { ... }` definitions with comments), scattered local enums in attack/, map/, item/, scene/, screen/ files, `api_references/` (referenced as "XXX値" numeric constants in method docs), usage in all Script singletons and plugin_official/.
+**Key references:** The base constants-enumeratedtype.js file, scattered definitions in other base scripts, and the API reference documentation (which refers to many of these values).
 
 Values are numbers (or bit flags). Use them for comparisons, passing to engine methods, switch statements, and aggregation filters.
 
@@ -118,9 +118,9 @@ Check the source `constants-enumeratedtype.js` comments for exact safe ranges an
 
 ## See Also
 
-- `Script/constants/constants-enumeratedtype.js` (read the whole file once; it's the single source of truth with Japanese comments explaining intent)
-- `api_references/` method signatures (they say "DirectionType値" etc.)
+- The base constants-enumeratedtype.js (read the whole file once; it is the single source of truth with comments explaining intent)
+- Method signatures in the API reference documentation (they refer to values such as "DirectionType値")
 - Individual pages (calculators use TrueHitValue / WeaponOption / InvalidFlag heavily; items use ItemType / RecoveryType; AI uses PatternType / Move*Type / AIDisableFlag; events use all the Event* types).
-- `Script/singleton/singleton-system.js` and attack/ for local enums that extend these.
+- Base files such as singleton-system.js and files under attack/ for local enums that extend these.
 
 When adding new custom behavior, pick a high number in the CUSTOM range and document the constant in your plugin header. Re-check this file (and the constants source) after engine updates.

@@ -1,6 +1,6 @@
 # Utilities, Structs, and Common Helpers
 
-**Sources:** `Script/singleton/singleton-system.js` (IndexArray, PosChecker, LayoutControl, Miscellaneous, Probability, DamageControl, WeaponEffectControl, ItemRangeControl, KeyEventChecker, UnitEventChecker, AttackChecker, WandChecker, ClassChangeChecker, ItemIdentityChecker, GameOverChecker, UnitProvider), `Script/singleton/singleton-struct.js` (StructureBuilder, ScreenBuilder), `Script/singleton/singleton-wrapper.js` (SetupControl, LoadControl, RetryControl, EnvironmentControl, DataConfig, ExtraControl, DefineControl, MediaControl), `Script/singleton/singleton-currentmap.js` (CurrentMap, MapLayer, MapView, Map*Decorator), `Script/singleton/singleton-inputcontrol.js`, `Script/singleton/singleton-mouse.js`, `Script/singleton/singleton-unitlist.js` (lists, FilterControl, Simulation*Control, Cost/Blocker rules), `Script/utility/utility-object.js`, `Script/utility/utility-posselector.js`, `Script/utility/utility-panel.js`, `Script/utility/utility-counter.js`, `Script/utility/utility-damagepopup.js`, `Script/utility/utility-trophy.js`, `Script/utility/utility-skill.js`, `Script/utility/utility-anime.js`, and cross usage in all other Script + plugin_official.
+**Key references:** Base script files such as singleton-system.js, singleton-struct.js, singleton-wrapper.js, singleton-unitlist.js, and various utility/ files. The API reference documentation (volatile.html, manager.html) and official plugins provide additional context and examples.
 
 These are the "glue" and data construction tools used by almost every plugin.
 
@@ -132,10 +132,10 @@ ScreenBuilder has `build*` for launching standard or custom screens (shop, unit 
 - [ai-enemy-behavior.md](ai-enemy-behavior.md) (simulator + filter + cost usage)
 - [battle-flows-and-attacks.md](battle-flows-and-attacks.md) (builders for attack)
 - [item-system-custom-items.md](item-system-custom-items.md) (range + item target info)
-- `Script/singleton/singleton-system.js` (the big file with most of PosChecker/Layout/Misc)
-- `Script/singleton/singleton-struct.js` (builders)
-- `Script/singleton/singleton-wrapper.js` (DataConfig/DefineControl)
-- `Script/singleton/singleton-unitlist.js`
-- `api_references/volatile.html` (structs), manager.html (some controls)
+- The base singleton-system.js (the main file with most of PosChecker/Layout/Misc)
+- singleton-struct.js (builders)
+- singleton-wrapper.js (DataConfig/DefineControl)
+- singleton-unitlist.js
+- The API reference volatile.html (structs), manager.html (some controls)
 
 These helpers keep plugins from duplicating core logic and make them resilient to resolution/map size changes. Grep the Script/ singletons for "PosChecker" / "LayoutControl" / "Miscellaneous" / "StructureBuilder" to see idiomatic usage.

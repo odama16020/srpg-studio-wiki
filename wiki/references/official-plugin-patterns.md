@@ -1,6 +1,6 @@
 # Official Plugin Patterns and Categories
 
-**Sources:** Directory structure + header comments + implementation of files under `plugin_official/` (flat + $コンポジション API/, $ハイレベル/, WorldMatrix/ subdirs; ~200 .js total). All examples and categories below are derived exclusively from these files. No unofficial plugins are referenced.
+**Key references:** Header comments and implementation of the official example plugins (including the flat files and subdirectories such as the Composition API, High Level, and WorldMatrix examples). All examples and categories below come from the official plugins. No unofficial/community plugins are referenced.
 
 Official plugins are provided by サファイアソフト (https://srpgstudio.com/). They serve as the canonical, supported examples of how to extend the engine.
 
@@ -87,6 +87,6 @@ These patterns, combined with the explicit extension points documented in Script
 - [defineobject-flows-and-helpers.md](../defineobject-flows-and-helpers.md)
 - [es5-compatibility.md](../es5-compatibility.md) (official code is the reference style)
 - Topical pages (calculators, items, AI, commands, battle, events, UI) — each links back to specific official examples for that domain.
-- The source files themselves under `plugin_official/` (the only approved reference implementations for "how the official team does it").
+- The official plugin files themselves (the approved reference implementations for patterns recommended by the engine developers).
 
 When the wiki is updated for new official plugins, add new categories or note new objects they alias/configure here, and update the relevant topical page.

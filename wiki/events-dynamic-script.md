@@ -1,12 +1,12 @@
 # Events, Dynamic Events, and Script Execution
 
-**Sources:** `Script/executive/executive-scriptcall.js` (ScriptCall_* top-level hooks), `Script/utility/utility-event.js` (DynamicEvent, CapsuleEvent, EventChecker, Rest* variants), `Script/executive/executive-eventcommandmanager.js` (EventCommandManager), `Script/eventcommand/eventcommand-scriptexecute.js` (ScriptExecuteEventCommand + _configureOriginalEventCommand), many individual `Script/eventcommand/eventcommand-*.js`, `Script/singleton/singleton-system.js` (UnitEventChecker, KeyEventChecker, AttackChecker), `api_references/event.html`, `api_references/eventcommand.html`, `api_references/generator.html`, and dozens of `plugin_official/scriptexecute-*.js`, `event-*.js`, `eventtrigger-*.js`.
+**Key references:** The base executive-scriptcall.js, utility-event.js, eventcommand-scriptexecute.js, and related eventcommand files, plus singleton-system.js. The API reference documentation (event.html, generator.html, etc.) and official plugins (scriptexecute-*.js and similar) provide further examples.
 
 Events are the primary way designers script story and the main hook for plugins to inject behavior.
 
 ## ScriptCall_* Global Hooks
 
-Defined in `Script/executive/executive-scriptcall.js`. These are called by the engine at key moments. Plugins can override them (rarely needed, but powerful for init/load).
+Defined in the base executive-scriptcall.js. These are called by the engine at key moments. Plugins can override them (rarely needed, but powerful for init/load).
 
 - `ScriptCall_Initialize(startupInfo)` — only place where root may not be available yet.
 - `ScriptCall_Setup()` — calls SetupControl.setup()
@@ -47,7 +47,7 @@ return dynamicEvent.moveDynamicEvent();
 
 This integrates perfectly with skip modes, event backlog, existing event UI, etc.
 
-See `plugin_official/custom-drop.js`, `battle-autoitem.js`, many custom-item implementations, scriptexecute-reviveunit.js, etc.
+See official plugins such as custom-drop.js, battle-autoitem.js, many custom-item implementations, scriptexecute-reviveunit.js, etc.
 
 Related: `DynamicAnime` for playing map animations from code.
 
@@ -86,7 +86,7 @@ ScriptExecuteEventCommand._configureOriginalEventCommand = function(groupArray) 
 
 Then in the event, set the script execute "object name" to your `getEventCommandName()` value.
 
-See `Script/eventcommand/eventcommand-scriptexecute.js`, official scriptexecute-*.js (many are implemented this way: scriptexecute-reviveunit.js, scriptexecute-customparameter.js, scriptexecute-inventorycontrol.js, etc.).
+See the base eventcommand-scriptexecute.js and official scriptexecute-*.js (many are implemented this way: scriptexecute-reviveunit.js, scriptexecute-customparameter.js, scriptexecute-inventorycontrol.js, etc.).
 
 ## Event Generators from Root
 
@@ -94,7 +94,7 @@ See `Script/eventcommand/eventcommand-scriptexecute.js`, official scriptexecute-
 
 It has methods for every event command type: message*, backgroundChange, music/sound, animationPlay, unitRemove/Assign, gold/item/parameter/skill/hp/damage/experience/classChange, forceBattle, chapter, location, map chip/pos ops, script execute, state, fusion, metamorphoze, bonus, trophy, durability, etc.
 
-See `api_references/generator.html` for the full list.
+See the API reference generator.html for the full list.
 
 ## Unit / Key / Place / Battle Events
 
@@ -113,7 +113,7 @@ While an event command is running you can query:
 - `root.getEventCommandType()`
 - Specific Command* objects (CommandMessageShow, CommandItemChange, etc.) have getters for their parameters.
 
-See `api_references/eventcommand.html`.
+See the API reference eventcommand.html.
 
 ## Best Practices
 
@@ -128,11 +128,11 @@ See `api_references/eventcommand.html`.
 
 - [defineobject-flows-and-helpers.md](defineobject-flows-and-helpers.md) (DynamicEvent details)
 - [overriding-patterns.md](overriding-patterns.md) (registering custom event commands)
-- `Script/executive/executive-scriptcall.js`
-- `Script/utility/utility-event.js`
-- `Script/eventcommand/eventcommand-scriptexecute.js`
-- `api_references/generator.html`, `event.html`, `eventcommand.html`
-- `plugin_official/scriptexecute-*.js` (many minimal working custom commands)
-- `plugin_official/eventtrigger-*.js`, `event-*.js` (condition and trigger extensions)
+- The base executive-scriptcall.js
+- utility-event.js in the base scripts
+- eventcommand-scriptexecute.js
+- The API reference generator.html, event.html, eventcommand.html
+- Official plugins such as scriptexecute-*.js (many minimal working custom commands)
+- eventtrigger-*.js, event-*.js (condition and trigger extensions) among the official plugins
 
 Events + DynamicEvent + custom script execute commands give plugins deep integration into the story and designer tooling.
