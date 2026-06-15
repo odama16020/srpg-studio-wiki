@@ -2,6 +2,14 @@
 
 Append-only chronological record. Newest entries at the top. Format: `## [YYYY-MM-DD] action | summary`
 
+## [2026-06-15] expansion | Added o-to blog/Google Drive + 名前未定（仮） Ci-en (zip-distributed) as notable sources + detailed public capability notes
+
+- Expanded "Handling Hard-to-Check / Zip-Only Releases" in references/user-made-plugins.md with dedicated subsection for two primary Japanese non-GitHub sources frequently referenced in Fandom and community:
+  - o-to (https://o-to-no-hokanko.blogspot.com/2015/10/srpg-studio.html): public detailed blog post + Google Drive zip archive. Extensive lists of custom param options for skill activation conditions (HP/turn/distance/surround/fusion/state/weapon-type/command/EP-FP etc.), many added skills (FE-like break/revenge, absorb, multi-attack, ignore def, etc.), AoE attack items (full effects, scaling, terrain, recovery), EP/FP gauge system (consumption/recovery/control), battle talk with expressions, AI top-score random pick for variety, damage variance, sortie ban, interface scaling. Terms: credit + usage report required. Fandom credits for splash origins and MP/SP (community English ports exist).
+  - 名前未定（仮） (https://ci-en.net/creator/4919/article): Ci-en with hundreds of articles + monthly "プラグインリスト" summaries. Prolific zip/Ci-en distributed (often in shared Plugin/ folders). Highlights from public titles: 統合Cal (integrated cal, explicit o-to compat notes), 武技っぽいの (martial skills, integrates with o-to conditions), 疑似アイテムスキル (pseudo item skills for skill-as-item behaviors), extensive UI (backlog, status screen, map unit, terrain windows, goal confirm), battle/real battle mods (prediction, dual wield, motion/position), AoE states, re-move, steal/build weight, AI random target, many patches (TextRenderer, exchange, guest restrictions), event commands, growth/exp, etc.
+- Notes: For these, rely on public blog descriptions (o-to's detailed lists are excellent for seeing real custom param usage), article titles + Fandom aggregations (splash reverse-eng by Claris, etc.) rather than direct source (zips required for full .js). Update Fandom/Discord for latest links/terms. Reimplement using wiki official patterns only. These + the 5 GitHubs cover the bulk of "practical Japanese dev patterns".
+- Minor cross-refs and policy reminders added in the page.
+
 ## [2026-06-15] expansion | Added 5 Japanese public plugin repos + extracted general dev procedures
 
 - Added dedicated "Additional Japanese Community Repositories (public GitHubs)" section to references/user-made-plugins.md covering https://github.com/QBE256/ExtraPlugin , https://github.com/RantaroGames/SRPG_Studio , https://github.com/iroha-code/SRPGStudio_Plugin , https://github.com/RYBA549/RYBA_SrpgStudio , https://github.com/CordialBun/srpg-studio-plugin .

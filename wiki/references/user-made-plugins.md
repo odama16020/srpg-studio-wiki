@@ -107,10 +107,43 @@ These repos fill many practical gaps (UI tweaks, niche data systems, new battle 
 ## Handling Hard-to-Check / Zip-Only Releases
 Some popular plugins (including certain namaemitei / "名前未定" contributions and Japanese community works) are distributed primarily as .zip files placed into a project's Plugin/ folder rather than public Git repos with browsable source.
 
-- **Best discovery path**: Start at the Fandom User-Made Plugin Links page (it aggregates links even for zip/Drive releases).
-- SRPG Studio Discord is the fastest place for questions, updates, and "does X still work with Y?"
+- **Best discovery path**: Start at the Fandom User-Made Plugin Links page (it aggregates links even for zip/Drive releases). SRPG Studio Discord for questions/compat.
 - When reverse-engineering or porting ideas from such zips for your own work, treat them as inspiration only. Re-implement using the official alias + configure* + defineObject patterns documented here.
 - Never assume a specific zip filename or author credit style will be stable; document your own work with clear sources in the official patterns.
+
+### Notable Examples: o-to and 名前未定（仮）
+These two are frequently referenced in Japanese community and Fandom as foundational for many features (splash/distance damage inspirations, skill extensions, gauges, UI, battle behaviors, etc.). Their materials are typically Google Drive zips linked from blogs or provided via Ci-en/Fandom, making direct source browsing require download (use public descriptions + Fandom summaries).
+
+- **o-to (https://o-to-no-hokanko.blogspot.com/2015/10/srpg-studio.html)**: Long-running "保管庫" (archive) with detailed public blog post describing the entire collection + Google Drive zip link (updated periodically; terms updated ~2025/09 to require credit + usage report via email, no reply expected). Explicit compat notes with other creators (e.g., 名前未定（仮） integrated cal, さんごぱん WaitTurnSystem).
+  - Major public capabilities (from blog descriptions): 
+    - スキル発動条件追加 (rich skill activation extension): dozens of custom param options for rates/conditions (HP%, turns/multiple, distance, surround allies/enemies, fusion state, equipped/ target weapon types, states, EP/FP consumption, command skill usage + cooldowns, priority for duplicate same-type skills like different multi-attacks, forced skills per class/race, pre-checks, etc.). Also item/weapon param bonus reflection toggle (perf note).
+    - スキル追加: FE-like (破天/status-to-damage, 復讐/revenge low-HP powerup), absorb HP on hit, guaranteed crit + multiplier change, ignore DEF, random 2-5 attacks, continue battle after kill, reduce enemy attack rounds on hit, damage guard (AoE version), preemptive swap, min/max hit rate caps, etc.
+    - 範囲攻撃アイテム (AoE attack items): full package with power scaling (unit ability + weapon), hit/miss/ use effects (anime, states multi with prob, terrain chip change, % damage-to-HP recovery), range shapes (cross, breath), filters (editor or custom), range display toggle (shift key), recoil damage. Notes that "pseudo item skill" behaviors (skill-used-as-item without owning item) require other plugins (e.g., 名前未定) and this one alone doesn't provide that.
+    - MP(EP) & 必殺ゲージ (EP/FP resource system): add EP (MP-like) + FP (crit-like, per-turn charge) to units; consumption on move/ weapon/item use (configurable per command); recovery on hit/miss/take damage/avoid; turn-start state grant at thresholds; base data or script execute for max/current/recovery rate control; unit event commands for consumption/condition.
+    - バトルトーク: battle quotes (wait/victory/damage/avoid/death) with expression change; per-weapon attack lines, pursuit lines; "script execute" integration for Custom.ini lines.
+    - 敵行動スコア上位ランダムピック: instead of always picking the single highest AI score action, pick randomly from top scorers (for variety with multi-target or multi-weapon enemies, e.g., high-dmg vs status weapon).
+    - ダメージ補正・誤差: level-based correction and variance (for campaigns with very high HP pools).
+    - 出撃禁止設定: via map custom param or script execute per-unit.
+    - インターフェイスをウィンドウサイズに合わせる: auto layout adjustment for small maps vs window.
+  - Fandom notes: o-to credited as original for splash damage concepts (Claris has English-friendly re-implementation page); MP/SP gauge script has community English replacement ("Mana System").
+  - Reusable patterns visible in public docs: extremely data-driven skill conditions via custom (complements official custom-skill + keyword dispatch); resource gauges as unit custom + calculator/flow hooks; AoE item as custom item + effect range + dynamic generator; AI score post-processing for non-deterministic choice.
+
+- **名前未定（仮） (https://ci-en.net/creator/4919/article)**: Highly prolific creator on Ci-en (hundreds of plugin articles since ~2020, monthly "プラグインリスト" summary posts listing updates + individual article pages with details). Materials often zips linked in articles (free plan or support access); commonly bundled into shared project Plugin/ folders or Fandom-listed. "00_" prefixed files often serve as compat layers or core definitions.
+  - Scope from public lists/titles (very active monthly releases): 
+    - 統合Cal (integrated calculator, major; o-to explicitly notes compat loading order and conflict mitigations in its archive).
+    - 武技っぽいの (martial-arts-like skill system; integrates with o-to skill conditions extension).
+    - 疑似アイテムスキル (pseudo item skills: key for "use skill as if item" without actual item ownership, enabling many custom command/skill behaviors seen in Japanese games).
+    - Extensive UI/display: backlog (name display, page-by-page, large face, width/scroll), status screen customs (HP bars/gauge positions, item columns shrink, icons, skill help toggle, class desc, support values, state display, weapon icons), map unit window (HP custom, state custom, fusion info, item display), terrain window (HP recovery display, bonus/support skill, coord), goal/objective confirm tweaks (non-hidden enemy count, etc.).
+    - Battle/real: attack window plus, combat result prediction mods (motion image, custom), real battle position/motion/alpha/ effect continue/pinch UI/background anime, dual wield (二刀流), super bow, etc.
+    - Mechanics: 範囲を持つステート (AoE states), re-move custom, steal weight by build (体格), stop motion command, race-specific state effect mods, min 1 damage weapons, various event commands (line message, etc.), growth/exp tweaks, hard boost, fusion related, shop/layout, message title/control, stock custom, etc.
+    - AI: enemy move-range target random selection.
+    - Many patches: TextRenderer error, item exchange, system-interruption, guest item restrictions, etc.
+  - Fandom: Aggregates many under Japanese creators; o-to and others reference namaemitei works for compat.
+  - Reusable: "pseudo" patterns for extending item/skill/command overlap; heavy focus on display polish (status/map/terrain/backlog windows via renderer or draw hooks); monthly changelog style for tracking; lots of small robust fixes for edge cases (save, load, skip, multi-plugin).
+
+For both: public blog/Ci-en article titles + Fandom provide excellent high-level overviews and custom param examples even without unzipping. Download zips for full headers/READMEs if needed for a project. Check Fandom for per-plugin English notes or ports where available. Always test coexistence (especially calculators, AI, status screens, real battle). These (plus GitHub Japanese repos) represent the bulk of "real" Japanese dev patterns used in actual games.
+
+## Compatibility & Best Practices (Applies to All Community Plugins)
 
 ## Compatibility & Best Practices (Applies to All Community Plugins)
 - Plugins often override the same engine functions (Calculator.*, Miscellaneous.*, etc.) without using alias. Alphabetical load order or explicit alias discipline matters.

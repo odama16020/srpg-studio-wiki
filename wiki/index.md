@@ -8,7 +8,7 @@ This wiki is a practical reference for developing SRPG Studio plugins using LLMs
 
 **Critical first read:** [es5-compatibility.md](es5-compatibility.md) — SRPG Studio uses very old JavaScript. Modern features will break.
 
-**Last major update:** 2026-06-15 (added 5 additional Japanese public plugin repos (QBE256, RantaroGames, iroha-code, RYBA549, CordialBun) with links + high-level capability summaries to references/user-made-plugins.md; extracted and cross-referenced general reusable dev procedures (custom param merging, originalMethod helpers for events, drawScreen* UI mods, battle system extensions, AI score tweaks, vision/weather) into core pages; updated policy refs and index; appended log entry)
+**Last major update:** 2026-06-15 (added 5 GitHub Japanese repos + o-to blog/Drive + 名前未定（仮） Ci-en (zip sources) with public feature summaries + handling notes to references/user-made-plugins.md; expanded Handling section with detailed capability lists from public blog/Ci-en (skill conditions, gauges, AoE items, pseudo skills, UI customs, AI variety etc.); cross-refs and log entry)
 
 ## Quick Start
 
