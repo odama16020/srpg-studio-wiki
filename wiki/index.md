@@ -18,7 +18,20 @@ This wiki is a practical reference for developing SRPG Studio plugins using LLMs
 4. Jump to the domain that matches your task (see categories below)
 5. Cross-reference the actual source files listed at the top of each page + the api HTMLs
 
-## Maintenance & How to Use with LLMs
+## How to Use This Wiki with an LLM for Plugin Development (Most Users — Recommended)
+
+This wiki is primarily a **reference** you feed to your LLM (Claude, Grok, etc.) so it can help you write correct plugins quickly.
+
+**Start here (lowest learning curve):**
+- Copy or make the wiki/ folder available to your LLM (upload, path, RAG tool, or project context).
+- Give your LLM the root `AGENTS.md` (or the "Recommended Starter Prompt" inside it). This is the thin, practical instruction set.
+- Your LLM should **always** check the Fandom hub (https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links) first for existing plugins before suggesting new code. Download and use ready-made ones when possible — this is the smartest and easiest path.
+- Then let the LLM read `wiki/index.md` → `wiki/getting-started.md` + `es5-compatibility.md` + relevant domain pages.
+- All generated code must follow the official patterns documented in the wiki (alias, ES5, custom params, etc.).
+
+See the "AGENTS.md" at the project root and the usage-focused parts of `wiki/LLM-INSTRUCTIONS.md` for full details and copy-paste examples. Regular users do **not** need to maintain the central wiki or log — your LLM can suggest local notes for your own project if you want history.
+
+## Maintenance & How to Use with LLMs (for Wiki Curators)
 
 - [LLM-INSTRUCTIONS.md](LLM-INSTRUCTIONS.md) — schema, ingest workflow, health checks, answer process
 - [log.md](log.md) — chronological record of changes

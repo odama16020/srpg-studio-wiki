@@ -1,6 +1,65 @@
-# LLM Instructions for Maintaining This Wiki
+# LLM Instructions for This Wiki
 
-**This file exists so future LLM sessions (and the human curator) know exactly how to evolve the wiki when new source material arrives.**
+**Two main use cases (read the right part for your session):**
+
+- **Most common: Helping a user develop plugins** (everyday SRPG Studio developers using their LLM + this wiki). See the "Usage for Plugin Development" section below first. The focus is low-friction, Fandom priority, official patterns only, and helping users with limited programming/LLM experience.
+- **Less common: Maintaining / curating the reference wiki itself** (when new official Script or srpgs_official_plugin material arrives). See the "Maintenance Workflow" section.
+
+This file (plus the root AGENTS.md) is the schema that tells LLMs how to behave with the wiki.
+
+**Primary goal overall:** Make it possible for LLMs to produce correct, compatible SRPG Studio plugins (in very old ES5 JS) reliably, while steering users toward existing community solutions on Fandom whenever possible instead of re-inventing.
+
+## Usage for Plugin Development (Default / Most Sessions — Focus Here for Normal Users)
+
+This is the workflow when a regular SRPG Studio developer is using their LLM (Claude, Grok, etc.) + this wiki to write plugins for their game. Users may have shallow programming or LLM knowledge. Keep instructions simple, patient, and actionable. Provide copy-paste ready things.
+
+### #0 Mandatory Rule — Fandom First (Never Skip)
+Before reading wiki pages or writing *any* code for a requested feature:
+
+- Tell the user clearly: "The easiest and best way is usually to use an already existing community plugin instead of writing new code from scratch."
+- Direct them to the hub: https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links
+- Help search/describe: "Look under [creator] or for keywords like 'range', 'splash', 'gauge', 'custom state', 'AI', 'item'..."
+- If a good match: Recommend downloading the plugin, reading its usage (usually in the zip or description), testing it alone first, and crediting the author. This is the recommended path.
+- Only after the user says "no suitable one" or "I need something custom / to learn the official way", proceed to use the wiki.
+
+This rule is repeated in AGENTS.md, index.md, getting-started.md, and the top of user-made-plugins.md. Enforce it every time.
+
+### Practical Steps in a Session
+1. User makes the wiki files available (folder path, uploads key pages, RAG, or project context) and ideally gives you the root AGENTS.md or the starter prompt from it.
+2. Read `wiki/index.md` first to choose the right pages.
+3. After Fandom check (above), read 1–3 most relevant wiki pages + any cited official source comments.
+4. Synthesize: Explain simply, cite the wiki pages + specific patterns ("see overriding-patterns.md for the alias example").
+5. Output complete, ready-to-paste plugin code in the standard official style (header comment with 使用方法, IIFE + alias).
+6. Give concrete next steps: "Put the .js in your Plugin folder, set the custom parameters on the unit/weapon as described, test in Test Play with skip modes on/off."
+7. Remind core rules every time it matters: ES5, alias the original, typeof guard for .custom, respect skip modes, test combinations.
+8. (Optional for sustained use) If the user wants personal project memory: "You can keep a local copy of this wiki or just append useful decisions to a my-plugins-log.md in your project. Tell me if you want me to propose text for it."
+
+### Example Starter Prompt Users Can Give Their LLM
+(Users can copy this — it encodes the important rules.)
+
+```
+You are helping me develop plugins for SRPG Studio. The srpg-studio-wiki folder is available to you.
+
+Hard rules (follow every time):
+- Fandom first: For any feature I ask about, immediately tell me to check https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links . Help me search it for existing plugins. Strongly recommend downloading and using a ready-made one (with credit) if it fits. Only write new code if I say there is no good match or I want a custom version.
+- Ground all suggestions in this wiki + official base scripts / srpgs_official_plugin / API docs. Never make up patterns.
+- Code must be valid ES5 only (var, classic for loops, IIFE, always alias the original method, use createObject*, guard .custom with typeof). See wiki/es5-compatibility.md.
+- Be patient and use simple language. Give full plugin files with the standard header (description, 使用方法, author, 更新履歴).
+- After code, give exact steps for the editor and testing (test play, skip modes, combinations).
+- For ongoing work, remember the wiki patterns across messages (user will re-provide files as needed).
+
+First, confirm you read wiki/index.md and wiki/AGENTS.md (or the rules above). Then wait for my first request.
+```
+
+### What "Sustained / Persistent Use" Looks Like for End Users
+- User keeps the wiki/ available in their LLM tool or re-mentions key files.
+- No requirement to edit the central wiki or log.md.
+- User's LLM can suggest local additions ("Here is text you could save in your-project/wiki-notes.md or append to a copy of log.md for your own reference").
+- The central log.md and wiki are updated only by the people maintaining the distributed reference.
+
+Always reinforce: "Using a good existing Fandom plugin is usually better than a new one from the wiki."
+
+(See also the root AGENTS.md for an even thinner version of these instructions.)
 
 ## Core Rules (Never Violate)
 
@@ -76,17 +135,23 @@ Details + code (ES5) + warnings.
 
 For reference/glossary pages, be explicit that the HTML + Script sources are the ground truth.
 
-## Query / Answer Workflow (When User Asks a Plugin Question)
+## Old Query / Answer Workflow (Mainly for Wiki Maintenance / Curator Sessions)
+
+(For normal plugin development use the "Usage for Plugin Development" section above instead.)
 
 1. Read `wiki/index.md` to find relevant pages.
 2. Read the 1-3 most relevant pages fully.
 3. If needed, read the cited source files in Script/srpgs_official_plugin/api_references for precise signatures (use read_file with limits or grep).
-4. Check references/user-made-plugins.md (or the Fandom hub it points to) for whether a popular community solution already exists for the feature (link it in the answer for the user).
+4. Check references/user-made-plugins.md (or the Fandom hub it points to) for whether a popular community solution already exists for the feature (link it in the answer for the user). For end-user sessions, treat this Fandom check as the absolute first step (see usage section).
 5. Synthesize an answer that cites the wiki pages + specific source files/lines where possible.
-5. If the answer requires a new code pattern not yet in the wiki, also propose (and later perform) the wiki update as part of the same task.
-6. Always remind about ES5 rules and the alias discipline.
+6. If the answer requires a new code pattern not yet in the wiki (and you are in a curator session), also propose (and later perform) the wiki update as part of the same task.
+7. Always remind about ES5 rules and the alias discipline.
 
-Good answers compound the wiki: after helping the user, file the synthesized knowledge back as a small update + log entry if it was missing or unclear.
+In curator/maintenance sessions, good answers can compound the wiki by filing synthesized knowledge back as small updates + log entries.
+
+## Maintenance Workflow (Ingest New Material) — Curator Only
+
+When updates to the base scripts or new official plugins become available (new engine version, additional official plugins released, etc.):
 
 ## Log.md Discipline
 

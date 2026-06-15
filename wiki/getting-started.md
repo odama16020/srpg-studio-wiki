@@ -118,7 +118,19 @@ All of these are directly supported by the patterns in official plugins.
 - Check save/load, chapter transitions, guest units, reinforcements.
 - For graphics: test software fullscreen, different resolutions, high/low perf.
 
-## Maintenance & This Wiki
+## Using This Wiki with Your LLM (Practical Path for Plugin Development)
+
+Once you have the wiki files available to your LLM tool:
+
+1. Point your LLM to the root `AGENTS.md` (or paste the "Recommended Starter Prompt" from it). This tells the LLM the important rules without you having to explain everything.
+2. **Fandom check is mandatory first step** (your LLM must do this): Before any new code, go to https://srpg-studio.fandom.com/wiki/User-Made_Plugin_Links and look for existing plugins that do what you want. Download + use them (with credit) — it's usually faster, safer, and lower effort than writing new code.
+3. Your LLM then reads wiki/index.md, then the relevant pages (always start with es5-compatibility.md + overriding-patterns.md for foundations).
+4. Ask for complete plugins following the patterns in the wiki. Test as described in the Testing Tips below.
+5. For ongoing work across chats: Keep the wiki folder in your LLM's context or re-upload key files as needed. Your LLM can propose additions to a *local copy* of log.md or a personal notes file if you want to remember decisions for this project. You do not need to update the central reference wiki.
+
+See `AGENTS.md` (root) and the usage sections in `wiki/index.md` + `wiki/LLM-INSTRUCTIONS.md` for copy-paste prompts and more guidance. The goal is minimal extra learning — the wiki + Fandom + your LLM should do most of the heavy lifting.
+
+## Maintenance & This Wiki (for those updating the reference)
 
 This wiki is designed to be read by LLMs (and humans) to generate correct, compatible plugins quickly. See LLM-INSTRUCTIONS.md for how to keep it up to date when new Script versions or official plugins are added.
 
