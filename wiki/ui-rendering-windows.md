@@ -99,7 +99,7 @@ Use these instead of hardcoding resolutions.
 
 ## Advanced Graphics (Composition, WorldMatrix, Canvas)
 
-In plugin_official subdirs:
+In srpgs_official_plugin subdirs:
 
 - Composition API (`$コンポジション API/`): `createComposition`, setImage, saturation/brightness/blur/hue/affin/blend/composite, reset. Costly to create — cache.
 - WorldMatrix: transforms (scale/rotate/vibration/zoom) during draw without per-sprite changes. Requires hardware rendering in some cases. Reset matrices after.
@@ -118,6 +118,7 @@ Warnings from sources: performance (createComposition), hardware draw mode requi
 - Namespace your appended config items / extra screens.
 - For text, prefer the TextUI objects returned by LayoutControl or query* rather than raw colors/fonts for theme consistency.
 - Test at different resolutions / software fullscreen / high-ppi.
+- Community examples often patch `XXXScreen.drawScreenBottomText` / `drawScreenTopText` (and similar) on stock screens (e.g. experience distribution, shop) to customize help/operation text or layout. These are typically direct method assignments (no alias in the mod examples). If possible alias the original if it calls a shared renderer; always test with other UI plugins. See references/user-made-plugins.md (RantaroGames Tips/ for concrete *_mod.js examples).
 
 ## See Also
 
@@ -129,5 +130,6 @@ Warnings from sources: performance (createComposition), hardware draw mode requi
 - Official plugins such as renderer-*.js, window-*.js, config-*.js, face-*.js, extra-*.js
 - Composition / WorldMatrix / highlevel example files among the official plugins (for advanced graphics)
 - The API reference manager.html, resource.html, subasset.html (InteropTextUI, Layouts, Dictionaries)
+- references/user-made-plugins.md (UI/window/layout and screen draw* tweak examples from community repos).
 
 UI extensions range from simple alias color/pos tweaks to full custom scenes and post-process effects. Start with windows + renderers + custom char chip for most needs.

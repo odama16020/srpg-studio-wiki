@@ -109,6 +109,7 @@ Official `custom-pattern.js` shows a RANDOM movement pattern using simulator + c
 - Disable certain weapons/items/skills for specific units (AIDisableFlag, scorer returning negative, or custom collector filter).
 - Custom place event priorities or occupation logic.
 - Visible enemy move ranges / threat (player-side only, via AutoActionBuilder or drawing hooks).
+- New targeting priorities or score multipliers for custom mechanics (e.g. preferring units that can be put into a special state like "break" via advantage hit, or surround/HP0 procs). Community repos show this via aliasing AIScorer.Weapon._getTotalScore (or equivalent) + checks for custom skills/states on target + multiplier on the returned score. See references/user-made-plugins.md (CordialBun BreakSystem AI priority, RantaroGames various AI-related).
 
 ## See Also
 
@@ -120,5 +121,6 @@ Official `custom-pattern.js` shows a RANDOM movement pattern using simulator + c
 - Official plugins such as ai-*.js and custom-pattern.js (real official extensions)
 - The API reference volatile.html (MapSimulator details)
 - pattern.html (AIPattern) in the documentation.
+- references/user-made-plugins.md (AI expansion, score tweaks, priority for custom states/mechanics from community repos).
 
 AI is one of the areas where the "three objects" contract is most explicitly documented in source comments.

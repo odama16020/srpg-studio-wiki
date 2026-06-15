@@ -1,6 +1,6 @@
 # Official Plugin Patterns and Categories
 
-**Key references:** Header comments and implementation of the official example plugins (including the flat files and subdirectories such as the Composition API, High Level, and WorldMatrix examples). All examples and categories below come from the official plugins. No unofficial/community plugins are referenced.
+**Key references:** Header comments and implementation of the official example plugins (including the flat files and subdirectories such as the Composition API, High Level, and WorldMatrix examples). All examples and categories below come from the official plugins (srpgs_official_plugin). User-Made Plugins are referenced only at high level in the separate references/user-made-plugins.md (links + summaries only, no code or internals).
 
 Official plugins are provided by サファイアソフト (https://srpgstudio.com/). They serve as the canonical, supported examples of how to extend the engine.
 

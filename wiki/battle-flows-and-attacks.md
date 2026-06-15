@@ -108,5 +108,8 @@ Drawing can be skipped in some paths.
 - Official plugins such as battle-*.js, custom-drop.js, skill-debuffafterbattle.js, state-*.js
 - The API reference volatile.html (AttackInfo, VirtualAttackUnit, etc. structs)
 - asset.html (Anime, OriginalMotion for custom battle graphics) in the documentation
+- references/user-made-plugins.md (battle system extensions, proxy combat, state procs, AI priority examples from community).
 
 Battle extensions often combine calculator changes + flow insertions + custom effects. Virtual simulation means changes are "felt" by the AI preview and ordering as well.
+
+Community repos demonstrate full "new combat rule" systems by aliasing deep into AttackEvaluator.* (HitCritical, ActiveAction), VirtualAttackControl (e.g. _isAttackStopState), AttackChecker, AIScorer.Weapon (for priority), StateTurnFlowEntry, NormalAttackOrderBuilder, etc. Examples include advantage-hit Break states that block counters for 1+ battles (with resist skills, weapon/skill gating via custom, phase recovery, AI bias), graze/charge/delay/obstruct/rewind/speed-taker/wait-turn mechanics, HP0 surround, proxy combat, effective factor variance. These use custom params on weapons (e.g. `isBreakWeapon`), custom skill keywords, state ID config, and explicit coexistence flags with other systems. See references/user-made-plugins.md (CordialBun/*System and RantaroGames proxy/surround/HP0 skills) for the capability scope and implementation scale; always re-ground in the alias + evaluator registration patterns here.

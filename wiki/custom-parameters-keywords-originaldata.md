@@ -132,6 +132,15 @@ if (agg !== null && agg.isCondition(targetUnit)) {
 5. **For arrays in custom:** store as JSON-ish objects; iterate with classic for + length.
 6. **Combine with aliasing:** read custom inside an overridden calculate/get/is* method.
 7. **Clean up:** for temporary state use TurnState or unit state lists rather than polluting unit.custom forever.
+8. **Merging custom params from multiple plugins:** When several plugins (including community ones) define custom parameters on the same editor object, all keys go inside **one single top-level `{}`** in the editor field. Do not write separate object literals. Merge at the same level:
+   ```
+   {
+     myPluginFoo: 5,
+     otherPluginBar: true,
+     ...
+   }
+   ```
+   See references/user-made-plugins.md (QBE256/ExtraPlugin README explicitly calls this out, consistent with official custom.html). Document the merged structure in your own plugin headers.
 
 ## See Also
 
@@ -142,3 +151,4 @@ if (agg !== null && agg.isCondition(targetUnit)) {
 - Official plugins such as calc-goodweapon.js and various custom-*.js (canonical examples)
 - The base singleton-paramgroup.js (`_configureUnitParameters` for adding new param types that then appear in .custom growth etc.)
 - The API reference asset.html, item.html, volatile.html (full spec of custom() and OriginalContent).
+- references/user-made-plugins.md (real-world custom param merging and data-driven examples from community repos).

@@ -4,11 +4,11 @@
 
 This wiki is a practical reference for developing SRPG Studio plugins using LLMs (or manually). It distills the key extension points, common patterns, data models, and important caveats found in SRPG Studio's base overridable scripts, the official example plugins, and the engine's core API reference documentation. The goal is to help you (or an LLM) quickly generate correct, compatible plugins without re-discovering everything from scratch on every project.
 
-**Primary rule:** Focus on official mechanisms and patterns from the base scripts and official plugins. Unofficial community plugins can be studied privately for inspiration during development, but specific unofficial plugin names, authors, or direct code copies should not be included in the wiki itself. This keeps the wiki portable across different users' project setups.
+**Primary rule:** Focus on official mechanisms and patterns from the base scripts and official plugins (srpgs_official_plugin). Unofficial community / User-Made Plugins can (and should) be studied privately for inspiration. A curated list of popular ones with links and high-level summaries is now included in the wiki (see [references/user-made-plugins.md](references/user-made-plugins.md)) to make development easier for LLM users. Never include direct code copies, specific filenames from unofficial zips, or author-specific low-level details in core pages. Link the Fandom hub and notable GitHubs instead. This balances portability with practical utility.
 
 **Critical first read:** [es5-compatibility.md](es5-compatibility.md) — SRPG Studio uses very old JavaScript. Modern features will break.
 
-**Last major update:** 2026-06-15 (initial creation)
+**Last major update:** 2026-06-15 (added 5 additional Japanese public plugin repos (QBE256, RantaroGames, iroha-code, RYBA549, CordialBun) with links + high-level capability summaries to references/user-made-plugins.md; extracted and cross-referenced general reusable dev procedures (custom param merging, originalMethod helpers for events, drawScreen* UI mods, battle system extensions, AI score tweaks, vision/weather) into core pages; updated policy refs and index; appended log entry)
 
 ## Quick Start
 
@@ -71,7 +71,8 @@ When you (or an agent) add new official plugins or a new Script version, follow 
 ## References & Patterns
 
 - [references/api-surface-glossary.md](references/api-surface-glossary.md) — Condensed navigation over all api_references/*.html with task-oriented lookup.
-- [references/official-plugin-patterns.md](references/official-plugin-patterns.md) — Categorized view of plugin_official/ (ai-, calc-, custom-, battle-, skill-, terrain-, scriptexecute-, system-, window-, composition, highlevel, WorldMatrix), universal patterns observed, do's and don'ts distilled from official code/comments.
+- [references/official-plugin-patterns.md](references/official-plugin-patterns.md) — Categorized view of srpgs_official_plugin/ (ai-, calc-, custom-, battle-, skill-, terrain-, scriptexecute-, system-, window-, composition, highlevel, WorldMatrix), universal patterns observed, do's and don'ts distilled from official code/comments.
+- [references/user-made-plugins.md](references/user-made-plugins.md) — Curated high-level links + summaries of popular User-Made / community plugins (Fandom hub, Goinza, Claris, CeruleanAcorn, etc.). For inspiration and avoiding reinventing common features. Links + capabilities only; no code copies. Includes notes on zip-only / hard-to-browse Japanese community releases (e.g. some namaemitei-style contributions).
 
 ## Index of All Pages (for Agents)
 

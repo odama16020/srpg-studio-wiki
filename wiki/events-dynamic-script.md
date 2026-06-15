@@ -123,6 +123,7 @@ See the API reference eventcommand.html.
 - Respect `isEventCommandSkipAllowed`, `root.isEventSkipMode()`, flow skip etc.
 - For data-driven events, combine with OriginalContent / custom params on the event.
 - Use `EventCommandManager.returnEnterCode()` after executeDynamicEvent in some contexts.
+- Community repos sometimes provide "originalMethod" style utility files (collections of plain functions + small control objects) intended to be called from "イベントコマンドの実行条件 > スクリプトを条件にする" or from Script Execute "コード実行". These are not auto-registered; the designer calls the function by name in the condition. Example patterns include terrain group lookup, custom param get/set from OriginalContent, guest unit item access overrides. See references/user-made-plugins.md (RantaroGames Tips/originalMethod.js and similar) for the idea; always reimplement the helper in your own namespace using only public API (root.getEventCommandObject().getOriginalContent(), unit.custom, PosChecker, etc.). Do not rely on specific filenames from zips.
 
 ## See Also
 
@@ -134,5 +135,6 @@ See the API reference eventcommand.html.
 - The API reference generator.html, event.html, eventcommand.html
 - Official plugins such as scriptexecute-*.js (many minimal working custom commands)
 - eventtrigger-*.js, event-*.js (condition and trigger extensions) among the official plugins
+- references/user-made-plugins.md (examples of script-condition helpers and event-related utilities from community).
 
 Events + DynamicEvent + custom script execute commands give plugins deep integration into the story and designer tooling.

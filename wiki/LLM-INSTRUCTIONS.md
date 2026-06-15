@@ -7,7 +7,7 @@
 1. **Sourcing focus**:
    - Prioritize the base overridable script files (the Script folder and its subfolders in a typical SRPG Studio project), the official example plugins, and the engine's API reference documentation (the HTML files).
    - You may also consult the general llm-wiki.md pattern file (at the project root) and this wiki itself for tone, structure, and maintenance conventions.
-   - Unofficial/community plugins developed by users can be read privately for implementation ideas and to discover additional patterns. However, you must never mention any specific unofficial plugin filename, author, or copy code from them directly into wiki pages. This keeps the wiki generally useful across different users' setups.
+   - Unofficial/community plugins (User Made Plugins) can be read privately for implementation ideas and to discover additional patterns. A curated, high-level list of popular/recommended ones (with links to download pages, GitHub, or the Fandom User-Made Plugin Links hub, plus short capability summaries and compatibility notes) is now permitted in the wiki (see references/user-made-plugins.md). This makes the wiki more practical for LLM-assisted development of new plugins, without violating portability. Never copy-paste code or low-level internals from unofficial plugins into wiki pages; only high-level "this enables X, see link". Always prefer grounding in official Script + srpgs_official_plugin + API.
    - Every factual claim, method name, code example, or pattern should be grounded in the official base scripts, official plugins, or API docs. Use "Key references:" or "Sources:" style notes on pages.
 
 2. **ES5 compatibility is sacred**:
@@ -42,6 +42,7 @@ When updates to the base scripts or new official plugins become available (new e
    - Core patterns (alias, defineObject, flows, custom params) if the mechanism changed.
    - Domain pages (calculators, items, AI, commands, battle, events, UI, etc.).
    - references/official-plugin-patterns.md — add new categories or note new objects they touch.
+   - references/user-made-plugins.md — when major new community plugins or repos become prominent (update links, summaries, caveats from Fandom hub + GitHubs). Do not add code or deep details.
    - enumerated-types.md if new constants appear.
    - api-surface-glossary.md for new high-usage surface.
 4. **Update cross-links** and "last updated" style notes in index.md.
@@ -60,7 +61,7 @@ Minimal structure:
 ```markdown
 # Page Title
 
-**Sources:** Script/xxx.js, Script/yyy.js, plugin_official/foo.js, api_references/bar.html, ...
+**Sources:** Script/xxx.js, Script/yyy.js, srpgs_official_plugin/foo.js, api_references/bar.html, ...
 
 Intro paragraph.
 
@@ -79,8 +80,9 @@ For reference/glossary pages, be explicit that the HTML + Script sources are the
 
 1. Read `wiki/index.md` to find relevant pages.
 2. Read the 1-3 most relevant pages fully.
-3. If needed, read the cited source files in Script/plugin_official/api_references for precise signatures (use read_file with limits or grep).
-4. Synthesize an answer that cites the wiki pages + specific source files/lines where possible.
+3. If needed, read the cited source files in Script/srpgs_official_plugin/api_references for precise signatures (use read_file with limits or grep).
+4. Check references/user-made-plugins.md (or the Fandom hub it points to) for whether a popular community solution already exists for the feature (link it in the answer for the user).
+5. Synthesize an answer that cites the wiki pages + specific source files/lines where possible.
 5. If the answer requires a new code pattern not yet in the wiki, also propose (and later perform) the wiki update as part of the same task.
 6. Always remind about ES5 rules and the alias discipline.
 
